@@ -129,6 +129,10 @@ let g:SuperTabCrMapping                = 0
 " EXPAND-REGION : visually select increasingly larger regions {
 Plugin 'terryma/vim-expand-region'
 "}
+"PANDOC-SYNTAX : ndoc markdown syntax {
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+"}
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
