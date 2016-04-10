@@ -129,8 +129,20 @@ if executable('ctags')
   nmap <F8> :TagbarToggle<CR>
 endif
 "}
+" ULTISNIPS - The ultimate snippet solution for Vim {
+Bundle 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+let g:UltiSnipsSnippetsDir='~/.vim/MySnippets'
+let g:UltiSnipsEditSplit='vertical'
+let g:UltiSnipsExpandTrigger           = '<tab>'
+let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+nnoremap <leader>ue :UltiSnipsEdit<cr>
+"}
 " SUPERTAB : Perform all your vim insert mode completions with Tab {
 Bundle 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType    = '<C-n>'
+let g:SuperTabCrMapping                = 0
 "}
 
 " Bundle Vundle setup END {
@@ -190,11 +202,25 @@ filetype indent on       " load the indent file for specific file types
 let g:tex_flavor='latex' " Prevent vim from setting filetype to `plaintex`
 syntax enable            " active la coloration syntaxique
 " Enable Syntax Highlighting for special filetypes
-autocmd BufRead,BufNewFile *.twig set filetype=htmljinja
-autocmd BufRead,BufNewFile *.md   set filetype=markdown spelllang=fr spell
+if has("autocmd")
+  augroup module "For Drupal
+    autocmd BufRead,BufNewFile *.twig set filetype=htmljinja
+    autocmd BufRead,BufNewFile *.module set filetype=php
+    autocmd BufRead,BufNewFile *.php set filetype=php
+    autocmd BufRead,BufNewFile *.install set filetype=php
+    autocmd BufRead,BufNewFile *.inc set filetype=php
+    autocmd BufRead,BufNewFile *.engine set filetype=php
+    autocmd BufRead,BufNewFile *.profile set filetype=php
+    autocmd BufRead,BufNewFile *.test set filetype=php
+  augroup END
+  autocmd BufRead,BufNewFile *.md   set filetype=markdown spelllang=fr spell
+endif
+
 
 hi SpellBad ctermfg=015 ctermbg=000 cterm=none guifg=#FFFFFF guibg=#000000
-
+" Highlight trailing whitespace.
+highlight ExtraWhitespace ctermbg=red guibg=red
+let a = matchadd('ExtraWhitespace', '\s\+$')
 
 
 "}
