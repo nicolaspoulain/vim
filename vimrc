@@ -112,14 +112,16 @@ if executable('ctags')
 endif
 "}
 " ULTISNIPS - The ultimate snippet solution for Vim {
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
-let g:UltiSnipsEditSplit='vertical'
-let g:UltiSnipsExpandTrigger           = '<tab>'
-let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
-nnoremap <leader>ue :UltiSnipsEdit<cr>
+if v:version > 703
+  Plugin 'SirVer/ultisnips'
+  Plugin 'honza/vim-snippets'
+  let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
+  let g:UltiSnipsEditSplit='vertical'
+  let g:UltiSnipsExpandTrigger           = '<tab>'
+  let g:UltiSnipsJumpForwardTrigger      = '<tab>'
+  let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
+  nnoremap <leader>ue :UltiSnipsEdit<cr>
+endif
 "}
 " SUPERTAB : Perform all your vim insert mode completions with Tab {
 Plugin 'ervandew/supertab'
@@ -130,8 +132,10 @@ let g:SuperTabCrMapping                = 0
 Plugin 'terryma/vim-expand-region'
 "}
 "PANDOC-SYNTAX : ndoc markdown syntax {
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
+if v:version > 703
+  Plugin 'vim-pandoc/vim-pandoc'
+  Plugin 'vim-pandoc/vim-pandoc-syntax'
+endif
 "}
 
 " Plugin Vundle setup END {
