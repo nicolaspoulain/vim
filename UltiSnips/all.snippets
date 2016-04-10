@@ -1,0 +1,13 @@
+extends c,markdown,python
+
+snippet yaml
+---
+date: ${2:`date +%Y-%m-%d__%H:%M`}
+tags: $3
+title: ${1:Meet UltiSnips}
+---
+
+# $1
+
+$0
+endsnippet
