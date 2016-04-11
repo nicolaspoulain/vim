@@ -29,7 +29,7 @@ q                         | stop recording
 
                           | COMPLETE&SNIPPETS |ULTISNIPS| |YOUCOMPLETEME|
 ------------------------- | ---------------------------------------------
-TAB                       | snippet expand or popup completion from file
+TAB CTRL-K                | file completion or snippet popup / expand
 CTRL-X CTRL-U             | snippets list
 CTRL-X CTRL-L             | line complete
 
