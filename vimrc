@@ -103,6 +103,13 @@ let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+"
+" " Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+
 " }
 " TAGBAR :F8: Display tags of a file ordered by scope {
 if executable('ctags')
@@ -223,16 +230,11 @@ set foldnestmax=10    " fdn: deepest fold is 10 levels
 "set nofoldenable      " nofen: don't fold by default
 set foldlevel=1
 " }
-" Splits, Tabs and Buffers{
+" Splits and Buffers{
 
-" Move between tabs
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
-nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
-nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 " Move between buffers
-nnoremap <F2> :bnext<CR>
-nnoremap <F3> :bprevious<CR>
+nnoremap <C-Right> :bnext<CR>
+nnoremap <C-Left> :bprevious<CR>
 
 set splitright " Puts new vsplit windows to the right of the current
 set splitbelow " Puts new split windows to the bottom of the current
@@ -266,7 +268,7 @@ set matchpairs+=<:> " add "<:>" as a matching pair
 " Toggle Display VimMyTips.md
 function OpenVMT()
   vsp ~/.vim/VimMyTips.md
-  vertical resize 75
+  vertical resize 74
   call cursor(40,1)
   normal! zz
 endfunction
