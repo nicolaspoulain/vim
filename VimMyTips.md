@@ -91,7 +91,7 @@ zf{motion} , {visual}zf   | creates a fold (e.g zf% fold matching pair)
 ------------------------- | ---------------------------------------------
 m{a-zA-Z}                 | set mark at cursor position (not a motion)
 '{a-z} '{A-Z0-9}          | jump to mark in buffer/ file where it was set
-'.     `.                 | jump to last modification line/t pont position
+'.     `.                 | jump to last modification line/cursor pos
 :marks  : delmarks!       | list, delete current marks
 
                           | MISC

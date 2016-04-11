@@ -113,18 +113,21 @@ endif
 "}
 " ULTISNIPS - The ultimate snippet solution for Vim {
 if v:version > 703
+  Plugin 'Valloric/YouCompleteMe'
   Plugin 'SirVer/ultisnips'
   Plugin 'honza/vim-snippets'
-  let g:UltiSnipsSnippetsDir='~/.vim/UltiSnips'
+  " use personnal snippets dir
+  let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
+  let g:UltiSnipsSnippetDirectories=["my-snippets"]
   let g:UltiSnipsEditSplit='vertical'
-  let g:UltiSnipsExpandTrigger           = '<tab>'
+  let g:UltiSnipsExpandTrigger           = '<c-k>'
   let g:UltiSnipsJumpForwardTrigger      = '<tab>'
   let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
   nnoremap <leader>ue :UltiSnipsEdit<cr>
 endif
 "}
 " SUPERTAB : Perform all your vim insert mode completions with Tab {
-Plugin 'ervandew/supertab'
+"Plugin 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType    = '<C-n>'
 let g:SuperTabCrMapping                = 0
 "}
@@ -263,7 +266,7 @@ set matchpairs+=<:> " add "<:>" as a matching pair
 " Toggle Display VimMyTips.md
 function OpenVMT()
   vsp ~/.vim/VimMyTips.md
-  vertical resize 74
+  vertical resize 75
   call cursor(40,1)
   normal! zz
 endfunction
