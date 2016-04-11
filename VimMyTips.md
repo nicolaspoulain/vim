@@ -27,7 +27,7 @@ q                         | stop recording
 "hp , CTRL-R h            | display recording h normal/insert mode
 "hdd                      | record text as action into register h
 
-                          | COMPLETE & SNIPPETS |ULTISNIPS| |SUPERTAB|
+                          | COMPLETE&SNIPPETS |ULTISNIPS| |YOUCOMPLETEME|
 ------------------------- | ---------------------------------------------
 TAB                       | snippet expand or popup completion from file
 CTRL-X CTRL-U             | snippets list
