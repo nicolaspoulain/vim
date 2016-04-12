@@ -118,9 +118,13 @@ if executable('ctags')
   nmap <F8> :TagbarToggle<CR>
 endif
 "}
-" ULTISNIPS - The ultimate snippet solution for Vim {
+" YOUCOMPLETEME - A code-completion engine for Vim {
 if v:version > 703
   Plugin 'Valloric/YouCompleteMe'
+endif
+"}
+" ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
+if v:version > 703
   Plugin 'SirVer/ultisnips'
   Plugin 'honza/vim-snippets'
   " use personnal snippets dir
