@@ -6,6 +6,8 @@
 " Instalation :
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " Launch vim with this .vimrc, then :BundleInstall
+" sudo apt-get install build-essential cmake python-dev python3-dev
+" cd ~/.vim/bundle/YouCompleteMe && ./install.py
 " ======================================================
 " }
 
