@@ -4,7 +4,7 @@
 "   This is the personal .vimrc file of Nicolas Poulain.
 " ------------------------------------------------------
 " Instalation :
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " Launch vim with this .vimrc, then :BundleInstall
 " ======================================================
 " }
