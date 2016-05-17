@@ -27,11 +27,11 @@ q                         | stop recording
 "hp , CTRL-R h            | display recording h normal/insert mode
 "hdd                      | record text as action into register h
 
-                          | COMPLETE&SNIPPETS |ULTISNIPS| |YOUCOMPLETEME|
+                          | COMPLETE & SNIPPETS |ULTISNIPS|
 ------------------------- | ---------------------------------------------
-TAB CTRL-K                | file completion or snippet popup / expand
-CTRL-X CTRL-U             | snippets list
-CTRL-X CTRL-L             | line complete
+CTRL-X CTRL-O             | omnicompletion (TAB with |SUPEERTAB|)
+CTRL-K                    | snippet completion
+CTRL-X CTRL-N             | file completion
 
                           | SPLITS |VIM-MAXIMIZER|
 ------------------------- | ---------------------------------------------

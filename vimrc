@@ -120,11 +120,6 @@ if executable('ctags')
   nmap <F8> :TagbarToggle<CR>
 endif
 "}
-" YOUCOMPLETEME - A code-completion engine for Vim {
-if v:version > 703
-  Plugin 'Valloric/YouCompleteMe'
-endif
-"}
 " ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
 if v:version > 703
   Plugin 'SirVer/ultisnips'
@@ -140,9 +135,16 @@ if v:version > 703
 endif
 "}
 " SUPERTAB : Perform all your vim insert mode completions with Tab {
-"Plugin 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType    = '<C-n>'
-let g:SuperTabCrMapping                = 0
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+
+set completeopt=longest,menuone
+
+Bundle 'ervandew/supertab'
+Bundle 'shawncplus/phpcomplete.vim'
+
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+
 "}
 " EXPAND-REGION : visually select increasingly larger regions {
 Plugin 'terryma/vim-expand-region'
@@ -235,12 +237,17 @@ set foldmethod=syntax " fdm: fold by the indentation by default
 set foldnestmax=10    " fdn: deepest fold is 10 levels
 "set nofoldenable      " nofen: don't fold by default
 set foldlevel=1
+" save and restore folds
+au BufWinLeave *.* mkview
+au BufWinEnter *.* silent loadview
+
+
 " }
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap <C-Right> :bnext<CR>
-nnoremap <C-Left> :bprevious<CR>
+nnoremap <leader>n :bnext<CR>
+nnoremap <leader>p :bprevious<CR>
 
 set splitright " Puts new vsplit windows to the right of the current
 set splitbelow " Puts new split windows to the bottom of the current
