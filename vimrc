@@ -41,6 +41,9 @@ map <F10> :call ToggleCurcol()<CR>
 " --- BEFORE plasticboy
 Plugin 'godlygeek/tabular'
 "}
+" LION a simple alignment operator for Vim text editor {
+Plugin 'tommcdo/vim-lion'
+"}
 " EASYMOTION : Vim motions on speed! {
 Plugin 'Lokaltog/vim-easymotion'
 "}
