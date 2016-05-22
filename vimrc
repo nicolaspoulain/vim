@@ -113,7 +113,7 @@ let g:airline#extensions#tabline#enabled = 1
 "
 " " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " }
 " TAGBAR :F8: Display tags of a file ordered by scope {
@@ -249,8 +249,24 @@ au BufWinEnter *.* silent loadview
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap <leader>n :bnext<CR>
-nnoremap <leader>p :bprevious<CR>
+nnoremap <leader>à :bnext<CR>
+nnoremap <leader>² :bprevious<CR>
+nnoremap <leader>& :buffer 1<CR>
+nnoremap <leader>é :buffer 2<CR>
+nnoremap <leader>" :buffer 3<CR>
+nnoremap <leader>' :buffer 4<CR>
+nnoremap <leader>( :buffer 5<CR>
+nnoremap <leader>- :buffer 6<CR>
+nnoremap <leader>è :buffer 7<CR>
+nnoremap <leader>_ :buffer 8<CR>
+nnoremap <leader>ç :buffer 9<CR>
+
+" move x buffer in a vsplitted window
+nnoremap <leader>w :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
+function VerticalSplitBuffer(buffer)
+  execute "vert belowright sb" a:buffer 
+endfunction
+
 
 set splitright " Puts new vsplit windows to the right of the current
 set splitbelow " Puts new split windows to the bottom of the current
@@ -280,7 +296,7 @@ set showmatch       " show matching brackets "(:),{:},[:]"
 set matchpairs+=<:> " add "<:>" as a matching pair
 "}
 "Misc {
-"
+
 " Toggle Display VimMyTips.md
 function OpenVMT()
   vsp ~/.vim/VimMyTips.md
@@ -288,23 +304,20 @@ function OpenVMT()
   call cursor(40,1)
   normal! zz
 endfunction
-
-map hh :call OpenVMT()<CR>
-autocmd BufRead  VimMyTips.md map hh :q<CR>
-autocmd BufLeave VimMyTips.md map hh :call OpenVMT()<CR>
-
+map vv :call OpenVMT()<CR>
+autocmd BufRead  VimMyTips.md map vv :q<CR>
+autocmd BufLeave VimMyTips.md map vv :call OpenVMT()<CR>
 
 " Allow writing via sudo
 cnoremap w!! w !sudo tee > /dev/null %
 
-
 " Move lines up/down
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
-vnoremap <C-k> :m '<-2<CR>gv=gv
+" nnoremap <C-j> :m .+1<CR>==
+" nnoremap <C-k> :m .-2<CR>==
+" inoremap <C-j> <Esc>:m .+1<CR>==gi
+" inoremap <C-k> <Esc>:m .-2<CR>==gi
+" vnoremap <C-j> :m '>+1<CR>gv=gv
+" vnoremap <C-k> :m '<-2<CR>gv=gv
 "}
 "Wildmenu settings {
 set wildmenu            " Turn on the Wild menu for completion on opening files
