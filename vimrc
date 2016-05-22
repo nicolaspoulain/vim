@@ -249,8 +249,8 @@ au BufWinEnter *.* silent loadview
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap <leader>à :bnext<CR>
-nnoremap <leader>² :bprevious<CR>
+nnoremap <tab> :bnext<CR>
+nnoremap <S-tab> :bprevious<CR>
 nnoremap <leader>& :buffer 1<CR>
 nnoremap <leader>é :buffer 2<CR>
 nnoremap <leader>" :buffer 3<CR>
