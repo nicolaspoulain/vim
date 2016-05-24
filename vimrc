@@ -146,7 +146,7 @@ Bundle 'ervandew/supertab'
 Bundle 'shawncplus/phpcomplete.vim'
 
 let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabContextDefaultCompletionType = "<c-x><c-n>"
 
 "}
 " EXPAND-REGION : visually select increasingly larger regions {

@@ -29,9 +29,9 @@ q                         | stop recording
 
                           | COMPLETE & SNIPPETS |ULTISNIPS|
 ------------------------- | ---------------------------------------------
-CTRL-X CTRL-O             | omnicompletion (TAB with |SUPEERTAB|)
+CTRL-X CTRL-O             | omnicompletion 
 CTRL-K                    | snippet completion
-CTRL-X CTRL-N             | file completion
+CTRL-X CTRL-N             | file completion (TAB with |SUPERTAB|)
 
                           | SPLITS |VIM-MAXIMIZER|
 ------------------------- | ---------------------------------------------
@@ -70,7 +70,6 @@ gggug                     | lowercase entire file
 gq{motion}                | format the lines that {motion} moves over
 [range]J , gJ             | Join [range] lines (insert/remove space)
 ,W                        | toggle Wrap lines
-
 
                           | REGISTERS
 ------------------------- | ---------------------------------------------
