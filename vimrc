@@ -44,6 +44,9 @@ Plugin 'godlygeek/tabular'
 " LION a simple alignment operator for Vim text editor {
 Plugin 'tommcdo/vim-lion'
 "}
+" VIM-EASY-ALIGN A Vim alignment plugin {
+Plugin 'junegunn/vim-easy-align'
+"}
 " EASYMOTION : Vim motions on speed! {
 Plugin 'Lokaltog/vim-easymotion'
 "}
