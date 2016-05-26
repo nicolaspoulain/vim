@@ -94,10 +94,9 @@ let g:ctrlp_cmd = 'CtrlP'
 " the current file.
 let g:ctrlp_working_path_mode = 'ra'
 "}
-" NERDTREE :F7: A tree explorer plugin that owns your momma! {
+" NERDTREE : A tree explorer plugin that owns your momma! {
 Plugin 'scrooloose/nerdtree'
 nmap <F7> :NERDTreeToggle<CR>
-" let mapleader = ","
 nmap <leader>nn :NERDTreeToggle<cr>
 "}
 " NERDTREE-GIT-PLUGIN : A plugin of NERDTree showing git status flags {
