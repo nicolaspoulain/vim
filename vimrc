@@ -22,6 +22,11 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
+" Mapleader {
+let mapleader=','   " change map leader from \ to ,
+let maplocalleader=','   " change map leader from \ to ,
+"}
+
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 "}
@@ -92,6 +97,8 @@ let g:ctrlp_working_path_mode = 'ra'
 " NERDTREE :F7: A tree explorer plugin that owns your momma! {
 Plugin 'scrooloose/nerdtree'
 nmap <F7> :NERDTreeToggle<CR>
+" let mapleader = ","
+nmap <leader>nn :NERDTreeToggle<cr>
 "}
 " NERDTREE-GIT-PLUGIN : A plugin of NERDTree showing git status flags {
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -189,8 +196,6 @@ set numberwidth=5   " nuw: width of number column
 set showcmd         " display incomplete commands
 set scrolloff=4     " keep 4 lines between current line and screen edge
 set sidescrolloff=2 " keep 2 cols between the current col screen edge
-let mapleader=','   " change map leader from \ to ,
-let maplocalleader=','   " change map leader from \ to ,
 set list " Show invisible characters
 let &listchars = "tab:>-,trail:\u2591,extends:>,precedes:<,nbsp:\u00b7"
 

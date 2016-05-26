@@ -115,7 +115,7 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 ------------------------- | ---------------------------------------------
 :Gstatus                  | |FUGITIVE| - to un/stage, cc to commit msg
 :TagbarToggle             | |TAGBAR| (maped to <F8>)
-:NERDTreeToggle           | |NERDTREE| (maped to <F7>)
+,nn      :NERDTreeToggle  | |NERDTREE| 
 ,c<Space>  ,  cs          | |NERDCOMMENTER| toggle comment, sexy comment
 :set cursorcolumn         | |CONOLINE| highlight cursor col/line <F10>
 :Tabularize /,            | |TABULARIZE| aligns statements on x
