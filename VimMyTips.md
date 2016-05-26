@@ -118,9 +118,9 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 :NERDTreeToggle           | |NERDTREE| (maped to <F7>)
 ,c<Space>  ,  cs          | |NERDCOMMENTER| toggle comment, sexy comment
 :set cursorcolumn         | |CONOLINE| highlight cursor col/line <F10>
-:Tabularize /x            | |TABULARIZE| aligns statements on char x
-glx                       | |LION| aligns statements on char x
-:LiveEasyAlign*x          | |VIM-EASY-ALIGN| aligns statements on char x
+:Tabularize /,            | |TABULARIZE| aligns statements on x
+glip,  v3j gl,            | |LION| aligns statements on x
+gaip*, v3j ga,            | |VIM-EASY-ALIGN| aligns statements on ,
 
                           | TEXT-OBJECT and *SURROUND*
 --------------------------| ---------------------------------------------

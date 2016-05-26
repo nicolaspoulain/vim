@@ -46,6 +46,10 @@ Plugin 'tommcdo/vim-lion'
 "}
 " VIM-EASY-ALIGN A Vim alignment plugin {
 Plugin 'junegunn/vim-easy-align'
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap ga <Plug>(LiveEasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g.  gaip)
+nmap ga <Plug>(LiveEasyAlign)
 "}
 " EASYMOTION : Vim motions on speed! {
 Plugin 'Lokaltog/vim-easymotion'
