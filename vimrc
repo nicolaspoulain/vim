@@ -308,6 +308,10 @@ set matchpairs+=<:> " add "<:>" as a matching pair
 "}
 "Misc {
 
+" Automatically change the current directory
+autocmd BufEnter * silent! lcd %:p:h
+
+
 " Toggle Display VimMyTips.md
 function OpenVMT()
   vsp ~/.vim/VimMyTips.md
