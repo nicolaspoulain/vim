@@ -171,6 +171,10 @@ if v:version > 703
   Plugin 'vim-pandoc/vim-pandoc-syntax'
 endif
 "}
+" TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
+Plugin 'christoomey/vim-tmux-navigator'
+"}
+
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
@@ -186,7 +190,9 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 
 set t_Co=256        " Colors in the terminal
-colorscheme elflord
+" colorscheme elflord
+Plugin 'tomasr/molokai'
+colorscheme molokai
 " color the 81st column of wide lines
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
