@@ -18,7 +18,7 @@ f{char} , F{char}         | jump For next,prev {char} (Repeat ;/,)
 ,,w   ,   ,,b             | start of word forward, backward |EASYMOTION|
 %                         | matching brace {}[]()
 
-                          | RECORDING
+:h recording              | RECORDING
 ------------------------- | ---------------------------------------------
 q{0-9a-zA-Z"}             | record into reg {0-9a-zA-Z"} (A-Z to append)
 q                         | stop recording
@@ -27,7 +27,7 @@ q                         | stop recording
 "hp , CTRL-R h            | display recording h normal/insert mode
 "hdd                      | record text as action into register h
 
-                          | COMPLETE & SNIPPETS |ULTISNIPS|
+:h ins-completion         | COMPLETE & SNIPPETS |ULTISNIPS|
 ------------------------- | ---------------------------------------------
 CTRL-X CTRL-O             | omnicompletion
 CTRL-K                    | snippet completion
