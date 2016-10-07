@@ -29,9 +29,10 @@ q                         | stop recording
 
                           | COMPLETE & SNIPPETS |ULTISNIPS|
 ------------------------- | ---------------------------------------------
-CTRL-X CTRL-O             | omnicompletion 
+CTRL-X CTRL-O             | omnicompletion
 CTRL-K                    | snippet completion
-CTRL-X CTRL-N             | file completion (TAB with |SUPERTAB|)
+CTRL-X CTRL-N             | file completion
+       CTRL-N             | all buffers completion
 
                           | SPLITS |VIM-MAXIMIZER|
 ------------------------- | ---------------------------------------------
@@ -115,7 +116,7 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 ------------------------- | ---------------------------------------------
 :Gstatus                  | |FUGITIVE| - to un/stage, cc to commit msg
 :TagbarToggle             | |TAGBAR| (maped to <F8>)
-,nn      :NERDTreeToggle  | |NERDTREE| 
+,nn      :NERDTreeToggle  | |NERDTREE|
 ,c<Space>  ,  cs          | |NERDCOMMENTER| toggle comment, sexy comment
 :set cursorcolumn         | |CONOLINE| highlight cursor col/line <F10>
 :Tabularize /,            | |TABULARIZE| aligns statements on x

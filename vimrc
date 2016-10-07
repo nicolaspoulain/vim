@@ -141,7 +141,23 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " TAGBAR :F8: Display tags of a file ordered by scope {
 if executable('ctags')
   Plugin 'majutsushi/tagbar'
-  let g:tagbar_type_markdown = { 'ctagstype' : 'markdown', 'kinds' : [ 'h:headings', 'l:links', 'i:images' ], "sort" : 0 }
+  " let g:tagbar_type_markdown = { 'ctagstype' : 'markdown', 'kinds' : [ 'h:headings', 'l:links', 'i:images' ], "sort" : 0 }
+  "Add support for markdown files in tagbar.
+  let g:tagbar_type_markdown = {
+        \ 'ctagstype': 'markdown',
+        \ 'ctagsbin' : '/home/nico/.vim/markdown2ctags.py',
+        \ 'ctagsargs' : '-f - --sort=yes',
+        \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+        \ ],
+        \ 'sro' : '|',
+        \ 'kind2scope' : {
+        \ 's' : 'section',
+        \ },
+        \ 'sort': 0,
+        \ }
+
   nmap <F8> :TagbarToggle<CR>
 endif
 "}
@@ -161,6 +177,10 @@ endif
 "}
 " SUPERTAB : Perform all your vim insert mode completions with Tab {
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
 
 set completeopt=longest,menuone
 
@@ -182,6 +202,21 @@ endif
 "}
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
 Plugin 'christoomey/vim-tmux-navigator'
+"}
+" TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
+Plugin 'stephpy/vim-php-cs-fixer'
+" If php-cs-fixer is in $PATH, you don't need to define line below
+" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
+let g:php_cs_fixer_level = "symfony"              " which level ?
+let g:php_cs_fixer_config = "default"             " configuration
+"let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
+let g:php_cs_fixer_php_path = "php"               " Path to PHP
+" If you want to define specific fixers:
+"let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
+let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
+let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
+let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information
+
 "}
 
 
@@ -228,6 +263,7 @@ set shiftwidth=2      " number of spaces to use for autoindent
 set softtabstop=2     " number of spaces that tabs insert
 set expandtab         " uses spaces whent tab is inserted
 set smarttab          " helps with backspacing because of expandtab
+set backspace=2       " make backspace work like most other apps
 set smartindent       " indent is automatically and smartly inserted
 set autoindent        " autoindent should be on when using 'smartindent'.
 set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
@@ -290,7 +326,7 @@ nnoremap <leader>ç :buffer 9<CR>
 " move x buffer in a vsplitted window
 nnoremap <leader>w :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
 function VerticalSplitBuffer(buffer)
-  execute "vert belowright sb" a:buffer 
+  execute "vert belowright sb" a:buffer
 endfunction
 
 
@@ -318,13 +354,19 @@ set ignorecase " Ignore case in search patterns
 set smartcase  " Case sensitive if pattern contains upper case characters
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
-set showmatch       " show matching brackets "(:),{:},[:]"
-set matchpairs+=<:> " add "<:>" as a matching pair
+"set showmatch       " show matching brackets "(:),{:},[:]"
+"set matchpairs+=<:> " add "<:>" as a matching pair
+let loaded_matchparen = 1 " do not show matching brackets
 "}
 "Misc {
 
 " Automatically change the current directory
 autocmd BufEnter * silent! lcd %:p:h
+
+" remove trailing spaces on save
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\t/  /g
+
 
 
 " Toggle Display VimMyTips.md
