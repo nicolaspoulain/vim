@@ -46,9 +46,6 @@ map <F10> :call ToggleCurcol()<CR>
 " --- BEFORE plasticboy
 Plugin 'godlygeek/tabular'
 "}
-" LION a simple alignment operator for Vim text editor {
-"Plugin 'tommcdo/vim-lion'
-"}
 " VIM-EASY-ALIGN A Vim alignment plugin {
 Plugin 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
@@ -176,20 +173,13 @@ if v:version > 703
   nnoremap <leader>ue :UltiSnipsEdit<cr>
 endif
 "}
-" SUPERTAB : Perform all your vim insert mode completions with Tab {
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+"AFAC ???????  SUPERTAB : Perform all your vim insert mode completions with Tab {
 
+" Bundle 'ervandew/supertab'
+" Bundle 'shawncplus/phpcomplete.vim'
 
-set completeopt=longest,menuone
-
-Bundle 'ervandew/supertab'
-Bundle 'shawncplus/phpcomplete.vim'
-
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-x><c-n>"
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabContextDefaultCompletionType = "<c-x><c-n>"
 
 "}
 " EXPAND-REGION : visually select increasingly larger regions {
@@ -203,21 +193,6 @@ endif
 "}
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
 Plugin 'christoomey/vim-tmux-navigator'
-"}
-" stephpy/vim-php-cs-fixer {
-Plugin 'stephpy/vim-php-cs-fixer'
-" If php-cs-fixer is in $PATH, you don't need to define line below
-" let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
-let g:php_cs_fixer_level = "symfony"              " which level ?
-let g:php_cs_fixer_config = "default"             " configuration
-"let g:php_cs_fixer_config_file = '.php_cs'       " configuration file
-let g:php_cs_fixer_php_path = "php"               " Path to PHP
-" If you want to define specific fixers:
-"let g:php_cs_fixer_fixers_list = "linefeed,short_tag,indentation"
-let g:php_cs_fixer_enable_default_mapping = 1     " Enable the mapping by default (<leader>pcd)
-let g:php_cs_fixer_dry_run = 0                    " Call command with dry-run option
-let g:php_cs_fixer_verbose = 0                    " Return the output of command if 1, else an inline information
-
 "}
 
 
@@ -257,6 +232,14 @@ map k gk
 
 command! -nargs=1 Silent | execute ':silent !'.<q-args> | execute ':redraw!' | execute ':set autoread'
 
+"}
+" Omnifunc settings {
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+
+set completeopt=longest,menuone
 "}
 " Tabulations and shift {
 set tabstop=2         " number of spaces that a tab renders as
@@ -382,7 +365,7 @@ autocmd BufRead  VimMyTips.md map vv :q<CR>
 autocmd BufLeave VimMyTips.md map vv :call OpenVMT()<CR>
 
 " Allow writing via sudo
-cnoremap w!! w !sudo tee > /dev/null %
+cnoremap W w !sudo tee > /dev/null %
 
 " Move lines up/down
 " nnoremap <C-j> :m .+1<CR>==

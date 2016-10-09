@@ -122,6 +122,7 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 :set cursorcolumn         | |CONOLINE| highlight cursor col/line <F10>
 :Tabularize /,            | |TABULARIZE| aligns statements on x
 vip<CR>**=  v3j<CR>|      | |VIM-EASY-ALIGN| aligns every & / first |
++   -                     | |EXPAND-REGION| expand/shrink selection
 
                           | TEXT-OBJECT and *SURROUND*
 --------------------------| ---------------------------------------------
