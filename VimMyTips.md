@@ -121,8 +121,7 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 ,c<Space>  ,  cs          | |NERDCOMMENTER| toggle comment, sexy comment
 :set cursorcolumn         | |CONOLINE| highlight cursor col/line <F10>
 :Tabularize /,            | |TABULARIZE| aligns statements on x
-glip,  v3j gl,            | |LION| aligns statements on x
-gaip*, v3j ga,            | |VIM-EASY-ALIGN| aligns statements on ,
+vip<CR>**=  v3j<CR>|      | |VIM-EASY-ALIGN| aligns every & / first |
 
                           | TEXT-OBJECT and *SURROUND*
 --------------------------| ---------------------------------------------

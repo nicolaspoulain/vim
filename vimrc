@@ -47,12 +47,12 @@ map <F10> :call ToggleCurcol()<CR>
 Plugin 'godlygeek/tabular'
 "}
 " LION a simple alignment operator for Vim text editor {
-Plugin 'tommcdo/vim-lion'
+"Plugin 'tommcdo/vim-lion'
 "}
 " VIM-EASY-ALIGN A Vim alignment plugin {
 Plugin 'junegunn/vim-easy-align'
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap ga <Plug>(LiveEasyAlign)
+vmap <enter> <Plug>(LiveEasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g.  gaip)
 nmap ga <Plug>(LiveEasyAlign)
 "}
@@ -204,7 +204,7 @@ endif
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
 Plugin 'christoomey/vim-tmux-navigator'
 "}
-" TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
+" stephpy/vim-php-cs-fixer {
 Plugin 'stephpy/vim-php-cs-fixer'
 " If php-cs-fixer is in $PATH, you don't need to define line below
 " let g:php_cs_fixer_path = "~/php-cs-fixer.phar" " define the path to the php-cs-fixer.phar
