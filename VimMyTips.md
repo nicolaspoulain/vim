@@ -29,10 +29,11 @@ q                         | stop recording
 
 :h ins-completion         | COMPLETE & SNIPPETS |ULTISNIPS|
 ------------------------- | ---------------------------------------------
-CTRL-X CTRL-O             | omnicompletion
-CTRL-K                    | snippet completion
-CTRL-X CTRL-N             | file completion
-       CTRL-N             | all buffers completion
+CTRL-X-CTRL-O             | omnicompletion
+CTRL-X-CTRL-N             | file completion
+CTRL-N                    | all buffers completion
+TAB                       | snippet list
+TAB-TAB                   | snippet completion
 
                           | SPLITS |VIM-MAXIMIZER|
 ------------------------- | ---------------------------------------------

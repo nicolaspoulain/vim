@@ -169,7 +169,8 @@ if v:version > 703
   let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
   let g:UltiSnipsSnippetDirectories=["my-snippets"]
   let g:UltiSnipsEditSplit='vertical'
-  let g:UltiSnipsExpandTrigger           = '<c-k>'
+  let g:UltiSnipsListSnippets = '<tab>'
+  let g:UltiSnipsExpandTrigger           = '<tab><tab>'
   let g:UltiSnipsJumpForwardTrigger      = '<tab>'
   let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
   nnoremap <leader>ue :UltiSnipsEdit<cr>
@@ -365,7 +366,7 @@ autocmd BufEnter * silent! lcd %:p:h
 
 " remove trailing spaces on save
 autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\t/  /g
+"autocmd BufWritePre * %s/\t/  /g
 
 
 
