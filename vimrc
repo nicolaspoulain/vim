@@ -111,6 +111,7 @@ let g:NERDTreeIndicatorMapCustom = { "Modified"  : "✹", "Staged"    : "✚", "
 "}
 " VIM-FUGITIVE : A Git wrapper so awesome, it should be illegal {
 Plugin 'tpope/vim-fugitive'
+nnoremap <leader>gg :Gstatus<CR>
 "}
 " VIM-GITGUTTER : shows a git diff in the gutter and stages/reverts hunks {
 Plugin 'airblade/vim-gitgutter'
