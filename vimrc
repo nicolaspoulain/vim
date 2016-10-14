@@ -245,15 +245,21 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }
 
+
 " General settings {
 " ESC mapped to jk or kj
 inoremap jk <Esc>
 inoremap kj <Esc>
 
 set t_Co=256        " Colors in the terminal
-" colorscheme elflord
+
+" Plugin 'pbrisbin/vim-colors-off'
+" colorscheme off
+" Plugin 'vim-scripts/xoria256.vim'
+" colorscheme xoria256
 Plugin 'tomasr/molokai'
 colorscheme molokai
+
 " color the 81st column of wide lines
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
