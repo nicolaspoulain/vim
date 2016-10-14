@@ -112,6 +112,7 @@ CTRL-R =5*5               | insert 25 into text
 g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 :h[elp] {subject}         | {subject} is cmd, i_cmd, v_cmd, c_cmd, :cmd
 :helpg[rep]               | search through all help docs
+,cd                       | change to open buffer's directory
 
                           | PLUGINS
 ------------------------- | ---------------------------------------------

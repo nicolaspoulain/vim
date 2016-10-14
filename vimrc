@@ -158,6 +158,56 @@ if executable('ctags')
   nmap <F8> :TagbarToggle<CR>
 endif
 "}
+" NEOCOMPLETE : Next generation completion framework after neocomplcache {
+  Plugin 'Shougo/neocomplete.vim'
+
+  let g:acp_enableAtStartup = 0
+  let g:neocomplete#enable_at_startup = 1
+  let g:neocomplete#enable_smart_case = 1
+  let g:neocomplete#enable_auto_delimiter = 1
+  let g:neocomplete#max_list = 25
+  " Make sure we use neocomplete completefunc
+  let g:neocomplete#force_overwrite_completefunc = 1
+  " Define dictionary.
+  let g:neocomplete#sources#dictionary#dictionaries = {
+        \ 'default' : '',
+        \ 'vimshell' : $HOME.'/.vimshell_hist',
+        \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+  " Define keyword.
+  if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+  endif
+  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+  " SuperTab like snippets behavior
+  imap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
+  smap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
+  imap <expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
+  smap <expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
+
+  Plugin 'shawncplus/phpcomplete.vim'
+
+
+  " Omnifunc settings
+  set completeopt=longest,menuone
+  autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+  " Enable heavy omni completion.
+  if !exists('g:neocomplete#sources#omni#input_patterns')
+    let g:neocomplete#sources#omni#input_patterns = {}
+  endif
+  let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+  let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"}
 " ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
 if v:version > 703
   Plugin 'SirVer/ultisnips'
@@ -173,15 +223,6 @@ if v:version > 703
   nnoremap <leader>ue :UltiSnipsEdit<cr>
 endif
 "}
-"AFAC ???????  SUPERTAB : Perform all your vim insert mode completions with Tab {
-
-" Bundle 'ervandew/supertab'
-" Bundle 'shawncplus/phpcomplete.vim'
-
-" let g:SuperTabDefaultCompletionType = "context"
-" let g:SuperTabContextDefaultCompletionType = "<c-x><c-n>"
-
-"}
 " EXPAND-REGION : visually select increasingly larger regions {
 Plugin 'terryma/vim-expand-region'
 "}
@@ -192,9 +233,8 @@ if v:version > 703
 endif
 "}
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
-Plugin 'christoomey/vim-tmux-navigator'
+  Plugin 'christoomey/vim-tmux-navigator'
 "}
-
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
@@ -217,7 +257,7 @@ colorscheme molokai
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 set number          " display line numbers
-set numberwidth=5   " nuw: width of number column
+set numberwidth=4   " nuw: width of number column
 set showcmd         " display incomplete commands
 set scrolloff=4     " keep 4 lines between current line and screen edge
 set sidescrolloff=2 " keep 2 cols between the current col screen edge
@@ -232,14 +272,6 @@ map k gk
 
 command! -nargs=1 Silent | execute ':silent !'.<q-args> | execute ':redraw!' | execute ':set autoread'
 
-"}
-" Omnifunc settings {
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-
-set completeopt=longest,menuone
 "}
 " Tabulations and shift {
 set tabstop=2         " number of spaces that a tab renders as
@@ -345,7 +377,7 @@ let loaded_matchparen = 1 " do not show matching brackets
 "Misc {
 
 " Automatically change the current directory
-autocmd BufEnter * silent! lcd %:p:h
+" autocmd BufEnter * silent! lcd %:p:h
 
 " remove trailing spaces on save
 autocmd BufWritePre * %s/\s\+$//e
