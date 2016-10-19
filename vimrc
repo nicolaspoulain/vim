@@ -100,15 +100,6 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 "}
-" NERDTREE : A tree explorer plugin that owns your momma! {
-Plugin 'scrooloose/nerdtree'
-nmap <F7> :NERDTreeToggle<CR>
-nmap <leader>nn :NERDTreeToggle<cr>
-"}
-" NERDTREE-GIT-PLUGIN : A plugin of NERDTree showing git status flags {
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-let g:NERDTreeIndicatorMapCustom = { "Modified"  : "✹", "Staged"    : "✚", "Untracked" : "✭", "Renamed"   : "➜", "Unmerged"  : "═", "Deleted"   : "✖", "Dirty"     : "✗", "Clean"     : "✔︎", "Unknown"   : "?" }
-"}
 " VIM-FUGITIVE : A Git wrapper so awesome, it should be illegal {
 Plugin 'tpope/vim-fugitive'
 nnoremap <leader>gg :Gstatus<CR>
@@ -181,14 +172,8 @@ endif
   endif
   let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-  " SuperTab like snippets behavior
-  imap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
-  smap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
-  imap <expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
-  smap <expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
 
   Plugin 'shawncplus/phpcomplete.vim'
-
 
   " Omnifunc settings
   set completeopt=longest,menuone
@@ -236,7 +221,13 @@ endif
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
   Plugin 'christoomey/vim-tmux-navigator'
 "}
+" RAINBOW_PARENTHESES : Better Rainbow Parentheses {
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+let g:rainbow_conf = {'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],}
+"}
 
+Plugin '2072/vim-syntax-for-PHP'
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -245,7 +236,18 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }
 
-
+" NETRW file browser : you don't need NERDtree {
+" no banner (I to toggle)
+let g:netrw_banner = 0
+" hit i to cycle through the view types
+let g:netrw_liststyle = 3
+" horizontal split
+let g:netrw_browse_split = 4
+" set the width to 25% of the page
+let g:netrw_winsize = 25
+" toggle display
+nmap <leader>nn :Lexplore<cr>
+"}
 " General settings {
 " ESC mapped to jk or kj
 inoremap jk <Esc>
@@ -405,6 +407,13 @@ autocmd BufLeave VimMyTips.md map vv :call OpenVMT()<CR>
 
 " Allow writing via sudo
 cnoremap W w !sudo tee > /dev/null %
+
+function IndentPHPHTML()
+  set ft=phtml
+  normal gg=G
+  set ft=php
+endfunction
+
 
 " Move lines up/down
 " nnoremap <C-j> :m .+1<CR>==
