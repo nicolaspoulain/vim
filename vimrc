@@ -227,7 +227,6 @@ let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],}
 "}
 
-Plugin '2072/vim-syntax-for-PHP'
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -302,7 +301,7 @@ syntax enable            " active la coloration syntaxique
 " Enable Syntax Highlighting for special filetypes
 if has("autocmd")
   augroup module "For Drupal
-    autocmd BufRead,BufNewFile *.twig set filetype=htmljinja
+    autocmd BufRead,BufNewFile *.twig set filetype=phtml
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.php set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
