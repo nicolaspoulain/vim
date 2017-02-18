@@ -260,6 +260,9 @@ set t_Co=256        " Colors in the terminal
 " colorscheme xoria256
 Plugin 'tomasr/molokai'
 colorscheme molokai
+if $HOSTNAME == "Host-001"
+  colorscheme darkblue
+endif
 
 " color the 81st column of wide lines
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
