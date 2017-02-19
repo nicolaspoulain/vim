@@ -226,6 +226,14 @@ Plugin 'luochen1990/rainbow'
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],}
 "}
+" NERDTREE : A tree explorer plugin for vim {
+  Plugin 'scrooloose/nerdtree'
+  let NERDTreeQuitOnOpen = 1       "close NerdTree when you open a file
+  let NERDTreeAutoDeleteBuffer = 1 "delete buffer of file deleted
+  nmap <leader>nn :NERDTreeToggle<Enter>
+  nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+"}
+
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
@@ -235,18 +243,18 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }
 
-" NETRW file browser : you don't need NERDtree {
-" no banner (I to toggle)
-let g:netrw_banner = 0
-" hit i to cycle through the view types
-let g:netrw_liststyle = 3
-" horizontal split
-let g:netrw_browse_split = 4
-" set the width to 25% of the page
-let g:netrw_winsize = 25
-" toggle display
-nmap <leader>nn :Lexplore<cr>
-"}
+" " NETRW file browser : you don't need NERDtree {
+" " no banner (I to toggle)
+" let g:netrw_banner = 0
+" " hit i to cycle through the view types
+" let g:netrw_liststyle = 3
+" " horizontal split
+" let g:netrw_browse_split = 4
+" " set the width to 25% of the page
+" let g:netrw_winsize = 25
+" " toggle display
+" nmap <leader>nn :Lexplore<cr>
+" "}
 " General settings {
 " ESC mapped to jk or kj
 inoremap jk <Esc>
