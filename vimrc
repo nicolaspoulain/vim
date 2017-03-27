@@ -21,40 +21,31 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
+" }
 
-" Mapleader {
-let mapleader=','   " change map leader from \ to ,
-let maplocalleader=','   " change map leader from \ to ,
-"}
+" VIM-MUCOMPLETE : Chained completion that works the way you want! {
+Plugin 'lifepillar/vim-mucomplete'
+set completeopt+=menuone
+let g:mucomplete#chains = { 'default' : ['path', 'ulti', 'incl', 'omni', 'uspl'] }
+" vim 7 doesn't support noinsert and noselect options for completeopt
+if v:version >= 800
+  set shortmess+=c
+  set completeopt+=noinsert,noselect
+  let g:mucomplete#enable_auto_at_startup = 1
+endif
+" }
+" ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-"}
-
-"CONOLINE :F10: Highlight the line of the cursor{
-Plugin 'miyakogi/conoline.vim'
-fu! ToggleCurcol ()
-  if &cursorcolumn
-    set nocursorcolumn
-  else
-    set cursorcolumn
-  endif
-endfunction
-map <F10> :call ToggleCurcol()<CR>
-"}
+let g:UltiSnipsUsePythonVersion = 2
+let g:UltiSnipsExpandTrigger="<C-J>"
+let g:UltiSnipsJumpForwardTrigger="<C-J>"
+let g:UltiSnipsJumpBackwardTrigger="<C-K>"
+" }
 " TABULAR : Configurable, flexible, intuitive text aligning {
 " --- BEFORE plasticboy
 Plugin 'godlygeek/tabular'
-"}
-" VIM-EASY-ALIGN A Vim alignment plugin {
-Plugin 'junegunn/vim-easy-align'
-" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
-vmap <enter> <Plug>(LiveEasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g.  gaip)
-nmap ga <Plug>(LiveEasyAlign)
-"}
-" EASYMOTION : Vim motions on speed! {
-Plugin 'Lokaltog/vim-easymotion'
 "}
 " VIM-SIGNATURE : place, toggle and display marks {
 Plugin 'kshenoy/vim-signature'
@@ -127,91 +118,6 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " }
-" TAGBAR :F8: Display tags of a file ordered by scope {
-if executable('ctags')
-  Plugin 'majutsushi/tagbar'
-  " let g:tagbar_type_markdown = { 'ctagstype' : 'markdown', 'kinds' : [ 'h:headings', 'l:links', 'i:images' ], "sort" : 0 }
-  "Add support for markdown files in tagbar.
-  let g:tagbar_type_markdown = {
-        \ 'ctagstype': 'markdown',
-        \ 'ctagsbin' : '/home/nico/.vim/markdown2ctags.py',
-        \ 'ctagsargs' : '-f - --sort=yes',
-        \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-        \ ],
-        \ 'sro' : '|',
-        \ 'kind2scope' : {
-        \ 's' : 'section',
-        \ },
-        \ 'sort': 0,
-        \ }
-
-  nmap <F8> :TagbarToggle<CR>
-endif
-"}
-" NEOCOMPLETE : Next generation completion framework after neocomplcache {
-  Plugin 'Shougo/neocomplete.vim'
-
-  let g:acp_enableAtStartup = 0
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_smart_case = 1
-  let g:neocomplete#enable_auto_delimiter = 1
-  let g:neocomplete#max_list = 25
-  " Make sure we use neocomplete completefunc
-  let g:neocomplete#force_overwrite_completefunc = 1
-  " Define dictionary.
-  let g:neocomplete#sources#dictionary#dictionaries = {
-        \ 'default' : '',
-        \ 'vimshell' : $HOME.'/.vimshell_hist',
-        \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-  " Define keyword.
-  if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-  endif
-  let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-
-  Plugin 'shawncplus/phpcomplete.vim'
-
-  " Omnifunc settings
-  set completeopt=longest,menuone
-  autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-  autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-  autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-  " Enable heavy omni completion.
-  if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-  endif
-  let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-  let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-  let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-  let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-  let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-"}
-" ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
-if v:version > 703
-  Plugin 'SirVer/ultisnips'
-  Plugin 'honza/vim-snippets'
-  " use personnal snippets dir
-  let g:UltiSnipsSnippetsDir='~/.vim/my-snippets/'
-  let g:UltiSnipsSnippetDirectories=["my-snippets"]
-  let g:UltiSnipsEditSplit='vertical'
-  let g:UltiSnipsListSnippets = '<tab>'
-  let g:UltiSnipsExpandTrigger           = '<tab><tab>'
-  let g:UltiSnipsJumpForwardTrigger      = '<tab>'
-  let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
-  nnoremap <leader>ue :UltiSnipsEdit<cr>
-endif
-"}
-" EXPAND-REGION : visually select increasingly larger regions {
-Plugin 'terryma/vim-expand-region'
-"}
 "PANDOC-SYNTAX : pandoc markdown syntax {
 if v:version > 703
   Plugin 'vim-pandoc/vim-pandoc'
@@ -221,17 +127,9 @@ endif
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
   Plugin 'christoomey/vim-tmux-navigator'
 "}
-" RAINBOW_PARENTHESES : Better Rainbow Parentheses {
-Plugin 'luochen1990/rainbow'
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-let g:rainbow_conf = {'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],}
-"}
 " NERDTREE : A tree explorer plugin for vim {
   Plugin 'scrooloose/nerdtree'
-  let NERDTreeQuitOnOpen = 1       "close NerdTree when you open a file
-  let NERDTreeAutoDeleteBuffer = 1 "delete buffer of file deleted
-  nmap <leader>nn :NERDTreeToggle<Enter>
-  nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+  nnoremap <leader>t  :NERDTreeToggle<CR>
 "}
 
 " Plugin Vundle setup END {
@@ -242,22 +140,10 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }
 
-" " NETRW file browser : you don't need NERDtree {
-" " no banner (I to toggle)
-" let g:netrw_banner = 0
-" " hit i to cycle through the view types
-" let g:netrw_liststyle = 3
-" " horizontal split
-" let g:netrw_browse_split = 4
-" " set the width to 25% of the page
-" let g:netrw_winsize = 25
-" " toggle display
-" nmap <leader>nn :Lexplore<cr>
-" "}
 " General settings {
-" ESC mapped to jk or kj
-inoremap jk <Esc>
-inoremap kj <Esc>
+
+let mapleader=','   " change map leader from \ to ,
+let maplocalleader=','   " change map leader from \ to ,
 
 set t_Co=256        " Colors in the terminal
 
@@ -267,9 +153,6 @@ set t_Co=256        " Colors in the terminal
 " colorscheme xoria256
 Plugin 'tomasr/molokai'
 colorscheme molokai
-if $HOSTNAME == "Host-001"
-  colorscheme darkblue
-endif
 
 " color the 81st column of wide lines
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -345,8 +228,8 @@ au BufWinEnter *.* silent loadview
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap <tab> :bnext<CR>
-nnoremap <S-tab> :bprevious<CR>
+nnoremap <leader>n :bnext<CR>
+nnoremap <leader>p :bprevious<CR>
 nnoremap <leader>& :buffer 1<CR>
 nnoremap <leader>é :buffer 2<CR>
 nnoremap <leader>" :buffer 3<CR>
@@ -461,3 +344,5 @@ endif
 " Return to last edit position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |   exe "normal! g`\"" | endif
 "}
+
+
