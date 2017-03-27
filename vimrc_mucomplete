@@ -25,15 +25,14 @@ call vundle#begin()
 
 " VIM-MUCOMPLETE : Chained completion that works the way you want! {
 Plugin 'lifepillar/vim-mucomplete'
-"  let g:mucomplete#enable_auto_at_startup = 1
-
-  " set completeopt+=menu,menuone
-  set completeopt+=menuone
+set completeopt+=menuone
+let g:mucomplete#chains = { 'default' : ['path', 'ulti', 'incl', 'omni', 'uspl'] }
+" vim 7 doesn't support noinsert and noselect options for completeopt
+if v:version >= 800
   set shortmess+=c
-  " let g:mucomplete#enable_auto_at_startup = 1
-  let g:mucomplete#chains = {
-        \ 'default' : ['file', 'omni', 'keyn', 'dict', 'spel']
-        \ }
+  set completeopt+=noinsert,noselect
+  let g:mucomplete#enable_auto_at_startup = 1
+endif
 " }
 " ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
 Plugin 'SirVer/ultisnips'
@@ -130,7 +129,7 @@ endif
 "}
 " NERDTREE : A tree explorer plugin for vim {
   Plugin 'scrooloose/nerdtree'
-  map <leader>nn  :NERDTreeToggle<CR>
+  nnoremap <leader>t  :NERDTreeToggle<CR>
 "}
 
 " Plugin Vundle setup END {
@@ -142,9 +141,9 @@ filetype plugin indent on    " required
 " }
 
 " General settings {
-" ESC mapped to jk or kj
-inoremap jk <Esc>
-inoremap kj <Esc>
+
+let mapleader=','   " change map leader from \ to ,
+let maplocalleader=','   " change map leader from \ to ,
 
 set t_Co=256        " Colors in the terminal
 
@@ -229,8 +228,8 @@ au BufWinEnter *.* silent loadview
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap <C-tab> :bnext<CR>
-nnoremap <C-S-tab> :bprevious<CR>
+nnoremap <leader>n :bnext<CR>
+nnoremap <leader>p :bprevious<CR>
 nnoremap <leader>& :buffer 1<CR>
 nnoremap <leader>é :buffer 2<CR>
 nnoremap <leader>" :buffer 3<CR>
