@@ -234,7 +234,6 @@ let g:rainbow_conf = {'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lig
   nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 "}
 
-
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
