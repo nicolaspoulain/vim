@@ -38,7 +38,12 @@ endif
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
-let g:UltiSnipsUsePythonVersion = 2
+if has('python')
+  let g:UltiSnipsUsePythonVersion = 2
+elseif has('python3')
+  let g:UltiSnipsUsePythonVersion = 3
+endif
+
 let g:UltiSnipsExpandTrigger="<C-J>"
 let g:UltiSnipsJumpForwardTrigger="<C-J>"
 let g:UltiSnipsJumpBackwardTrigger="<C-K>"
@@ -129,7 +134,7 @@ endif
 "}
 " NERDTREE : A tree explorer plugin for vim {
   Plugin 'scrooloose/nerdtree'
-  nnoremap <leader>t  :NERDTreeToggle<CR>
+  nnoremap tt  :NERDTreeToggle<CR>
 "}
 
 " Plugin Vundle setup END {
@@ -228,8 +233,8 @@ au BufWinEnter *.* silent loadview
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap <leader>n :bnext<CR>
-nnoremap <leader>p :bprevious<CR>
+nnoremap <TAB> :bnext<CR>
+nnoremap <S-TAB> :bprevious<CR>
 nnoremap <leader>& :buffer 1<CR>
 nnoremap <leader>é :buffer 2<CR>
 nnoremap <leader>" :buffer 3<CR>

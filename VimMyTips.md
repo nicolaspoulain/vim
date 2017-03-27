@@ -15,7 +15,6 @@ s                         | Substitute char on cursor (s is cl)
 NG (or :N)                | move to line N
 f{char} , F{char}         | jump For next,prev {char} (Repeat ;/,)
 /{ptrn} , ?{ptrn}         | search   next,prev {ptrn} (Repeat n/N)
-,,w   ,   ,,b             | start of word forward, backward |EASYMOTION|
 %                         | matching brace {}[]()
 
 :h recording              | RECORDING
@@ -27,13 +26,13 @@ q                         | stop recording
 "hp , CTRL-R h            | display recording h normal/insert mode
 "hdd                      | record text as action into register h
 
-:h ins-completion         | COMPLETE & SNIPPETS |ULTISNIPS|
+:h ins-completion         | |MUCOMPLETE| & |ULTISNIPS|
 ------------------------- | ---------------------------------------------
+TAB   (CTRL-H)            | complete list (try another µcompl chain)
+CTRL-J                    | snippet expand & jump
 CTRL-X-CTRL-O             | omnicompletion
 CTRL-X-CTRL-N             | file completion
 CTRL-N                    | all buffers completion
-TAB                       | snippet list
-TAB-TAB                   | snippet completion
 
                           | SPLITS |VIM-MAXIMIZER|
 ------------------------- | ---------------------------------------------
@@ -42,15 +41,14 @@ CTRL-W =   , CTRL-W _ , | | make Windows same, max height/width
 CTRL-W +-<> , CTRL-W +++  | resize window
 CTRL-W hjkl , CTRL arrows | focus to far left,down,up,right window
 CTRL-W HJKL               | move current window to far left,down,up,right
-,vs                       | split long file into 2 continuous windows
-:MaximizerToggle          | maximize split and restore (maped to <F4>)
+map: ,vs                  | split long file into 2 continuous windows
 
                           | BUFFERS
 ------------------------- | ---------------------------------------------
 :e[dit] {file}  :Sex :Vex | open {file} in new, split, vsplit window
-:sb x , vsp | bx          | move x buffer in a (v)splited window
+:sb x , vsp | bx          | x buffer in a (v)splited window (map: ,w )
 :sball , :bw              | split all buffers , close current buffer
-:bn , :bp                 | next, previous buffer (maped to <F2> <F3>)
+:bn , :bp                 | next/prev buffer (maped to <TAB> <S-Tab>)
 
                           | VISUAL MODE ie TEXT BLOCKS
 ------------------------- | ---------------------------------------------
@@ -118,12 +116,9 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 ------------------------- | ---------------------------------------------
 :Gstatus                  | |FUGITIVE| - to un/stage, cc to commit msg
 :TagbarToggle             | |TAGBAR| (maped to <F8>)
-,nn      :NERDTreeToggle  | |NERDTREE|
+tt      :NERDTreeToggle   | |NERDTREE|
 ,c<Space>  ,  cs          | |NERDCOMMENTER| toggle comment, sexy comment
-:set cursorcolumn         | |CONOLINE| highlight cursor col/line <F10>
-:Tabularize /,            | |TABULARIZE| aligns statements on x
-vip<CR>**=  v3j<CR>|      | |VIM-EASY-ALIGN| aligns every & / first |
-+   -                     | |EXPAND-REGION| expand/shrink selection
+:Tabularize /,/c1         | |TABULAR| aligns statements on x
 
                           | TEXT-OBJECT and *SURROUND*
 --------------------------| ---------------------------------------------
