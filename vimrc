@@ -98,7 +98,8 @@ let g:ctrlp_custom_ignore = {
 "}
 " VIM-FUGITIVE : A Git wrapper so awesome, it should be illegal {
 Plugin 'tpope/vim-fugitive'
-nnoremap <leader>gg :Gstatus<CR>
+nnoremap gg :Gstatus<CR>
+nnoremap gp :Gpush<CR>
 "}
 " VIM-GITGUTTER : shows a git diff in the gutter and stages/reverts hunks {
 Plugin 'airblade/vim-gitgutter'
