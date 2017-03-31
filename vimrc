@@ -126,8 +126,8 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " }
 "PANDOC-SYNTAX : pandoc markdown syntax {
 if v:version > 703
-  Plugin 'vim-pandoc/vim-pandoc'
-  Plugin 'vim-pandoc/vim-pandoc-syntax'
+  " Plugin 'vim-pandoc/vim-pandoc'
+  " Plugin 'vim-pandoc/vim-pandoc-syntax'
 endif
 "}
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
@@ -135,8 +135,29 @@ endif
 "}
 " NERDTREE : A tree explorer plugin for vim {
   Plugin 'scrooloose/nerdtree'
-  nnoremap tt  :NERDTreeToggle<CR>
+  nnoremap nt  :NERDTreeToggle<CR>
 "}
+" TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
+  Plugin 'majutsushi/tagbar'
+  nnoremap tt  :TagbarToggle<CR>
+
+" Add support for markdown files in tagbar.
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '/opt/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+
+  "}
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
