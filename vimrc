@@ -85,7 +85,7 @@ let g:ctrlp_cmd = 'CtrlP'
 " a - the directory of the current file, but only if the current working
 " directory outside of CtrlP is not a direct ancestor of the directory of
 " the current file.
-" let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
@@ -98,8 +98,8 @@ let g:ctrlp_custom_ignore = {
 "}
 " VIM-FUGITIVE : A Git wrapper so awesome, it should be illegal {
 Plugin 'tpope/vim-fugitive'
-nnoremap gg :Gstatus<CR>
-nnoremap gp :Gpush<CR>
+nnoremap ,gg :Gstatus<CR>
+nnoremap ,gp :Gpush<CR>
 "}
 " VIM-GITGUTTER : shows a git diff in the gutter and stages/reverts hunks {
 Plugin 'airblade/vim-gitgutter'
@@ -135,11 +135,12 @@ endif
 "}
 " NERDTREE : A tree explorer plugin for vim {
   Plugin 'scrooloose/nerdtree'
-  nnoremap nt  :NERDTreeToggle<CR>
+  nnoremap ,n  :NERDTreeToggle<CR>
 "}
 " TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
   Plugin 'majutsushi/tagbar'
-  nnoremap tt  :TagbarToggle<CR>
+  " nnoremap <leader>tt  :TagbarToggle<CR>
+  nmap ,t :TagbarToggle<CR>
 
 " Add support for markdown files in tagbar.
 let g:tagbar_type_markdown = {
