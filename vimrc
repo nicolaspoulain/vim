@@ -159,6 +159,9 @@ let g:tagbar_type_markdown = {
 \ }
 
   "}
+" VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
+Plugin 'lumiliet/vim-twig'
+"}
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
@@ -222,7 +225,7 @@ syntax enable            " active la coloration syntaxique
 " Enable Syntax Highlighting for special filetypes
 if has("autocmd")
   augroup module "For Drupal
-    autocmd BufRead,BufNewFile *.twig set filetype=phtml
+    " autocmd BufRead,BufNewFile *.twig set filetype=phtml
     autocmd BufRead,BufNewFile *.module set filetype=php
     autocmd BufRead,BufNewFile *.php set filetype=php
     autocmd BufRead,BufNewFile *.install set filetype=php
@@ -372,5 +375,3 @@ endif
 " Return to last edit position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |   exe "normal! g`\"" | endif
 "}
-
-
