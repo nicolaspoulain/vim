@@ -74,7 +74,7 @@ snippet modeline "Vim modeline"
 vim`!v ':set '. (&expandtab ? printf('et sw=%i ts=%i', &sw, &ts) : printf('noet sts=%i sw=%i ts=%i', &sts, &sw, &ts)) . (&tw ? ' tw='. &tw : '') . ':'`
 endsnippet
 
-snippet yaml
+snippet yaml "Yaml block"
 ---
 date: ${2:`date +%Y-%m-%d__%H:%M`}
 tags: $3

@@ -44,6 +44,7 @@ elseif has('python3')
   let g:UltiSnipsUsePythonVersion = 3
 endif
 
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "my-snippets"]
 let g:UltiSnipsExpandTrigger="<C-J>"
 let g:UltiSnipsJumpForwardTrigger="<C-J>"
 let g:UltiSnipsJumpBackwardTrigger="<C-K>"
@@ -234,7 +235,7 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.profile set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
   augroup END
-  autocmd BufRead,BufNewFile *.md   set filetype=markdown spelllang=fr spell
+  " autocmd BufRead,BufNewFile *.md   set filetype=markdown spelllang=fr spell
 endif
 
 
