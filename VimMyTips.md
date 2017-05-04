@@ -88,9 +88,10 @@ zf{motion} , {visual}zf   | creates a fold (e.g zf% fold matching pair)
 
                           | MARKS (better with |VIM-SIGNATURE|)
 ------------------------- | ---------------------------------------------
-m{a-zA-Z}                 | set mark at cursor position (not a motion)
+m{a-zA-Z}                 | set/unset mark at cursor position (no motion)
 '{a-z} '{A-Z0-9}          | jump to mark in buffer/ file where it was set
-'.     `.                 | jump to last modification line/cursor pos
+'', ``                    | move cursor to last position
+CTRL-O, CTRL-I            | back/forward in jumplist (see :ju)
 :marks  : delmarks!       | list, delete current marks
 
                           | MISC
@@ -135,7 +136,7 @@ cs)<p>                    | (abc) to <p>abc</p>          "
 --------------------------| ---------------------------------------------
 :vimgrep /ptrn/ **        | search files containing ptrn recursively
 :vimgrep /ptrn/ **/*.txt  |  idem in txt files
-       :copen or :cw      |  open result lists
+       :copen             |  open result lists
 * , g*                    | search forwd whole/partial word under cursor
 [I                        | display all lines contain word under cursor
 :g[!]/{prtn}/[cmd]        | execute [cmd] on lines matching(!NOT) {ptrn}
