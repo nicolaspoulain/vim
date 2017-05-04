@@ -310,12 +310,17 @@ let loaded_matchparen = 1 " do not show matching brackets
 "Misc {
 
 " Automatically change the current directory
-" autocmd BufEnter * silent! lcd %:p:h
+autocmd BufEnter * silent! lcd %:p:h
 
+fun! StripTrailingWhitespace()
+    " Don't strip on these filetypes
+    if &ft =~ 'markdown\|perl'
+        return
+    endif
+    %s/\s\+$//e
+endfun
 " remove trailing spaces on save
-autocmd BufWritePre * %s/\s\+$//e
-"autocmd BufWritePre * %s/\t/  /g
-
+autocmd BufWritePre * call StripTrailingWhitespace()
 
 
 " Toggle Display VimMyTips.md
