@@ -34,6 +34,11 @@ CTRL-X-CTRL-O             | omnicompletion
 CTRL-X-CTRL-N             | file completion
 CTRL-N                    | all buffers completion
 
+                          | SPELL
+------------------------- | ---------------------------------------------
+zg, zw                    | add word under cursor as good / bad
+]s, [s                    | move to next/previous misspelled word
+
                           | SPLITS |VIM-MAXIMIZER|
 ------------------------- | ---------------------------------------------
 CTRL-W s , v , q          | split/vspilt/close window

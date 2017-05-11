@@ -26,11 +26,15 @@ call vundle#begin()
 " VIM-MUCOMPLETE : Chained completion that works the way you want! {
 Plugin 'lifepillar/vim-mucomplete'
 set completeopt+=menuone
-let g:mucomplete#chains = { 'default' : ['path', 'ulti', 'incl', 'omni', 'uspl'] }
+let g:mucomplete#chains = {}
+let g:mucomplete#chains.default=['path', 'ulti', 'incl', 'omni', 'uspl']
+let g:mucomplete#chains.markdown = ['uspl', 'path', 'ulti', 'incl', 'omni']
+
 " vim 7 doesn't support noinsert and noselect options for completeopt
 if v:version >= 800
   set shortmess+=c
-  set completeopt+=noinsert,noselect
+  set completeopt+=noinsert
+  set completeopt+=noselect
   let g:mucomplete#enable_auto_at_startup = 1
 endif
 " }
@@ -125,12 +129,19 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " }
-"PANDOC-SYNTAX : pandoc markdown syntax {
+"MARKDOWN {
 if v:version > 703
   " Plugin 'vim-pandoc/vim-pandoc'
   " Plugin 'vim-pandoc/vim-pandoc-syntax'
+  Plugin 'plasticboy/vim-markdown'
+  set conceallevel=2
+" Plugin 'prurigro/vim-markdown-concealed'
 endif
 "}
+" VIMTEX {
+  Plugin 'lervag/vimtex'
+let g:vimtex_compiler_latexmk = {'callback' : 0}
+  "}
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
   Plugin 'christoomey/vim-tmux-navigator'
 "}
@@ -163,6 +174,15 @@ let g:tagbar_type_markdown = {
 " VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
 Plugin 'lumiliet/vim-twig'
 "}
+" PAPERCOLOR-THEME {
+  Plugin 'NLKNguyen/papercolor-theme' " colorscheme PaperColor
+  Plugin 'pbrisbin/vim-colors-off'    " colorscheme off
+  Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
+  Plugin 'tomasr/molokai'             " colorscheme molokai
+  set t_Co=256        " Colors in the terminal
+
+  set background=dark
+  "}
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
@@ -177,14 +197,6 @@ filetype plugin indent on    " required
 let mapleader=','   " change map leader from \ to ,
 let maplocalleader=','   " change map leader from \ to ,
 
-set t_Co=256        " Colors in the terminal
-
-" Plugin 'pbrisbin/vim-colors-off'
-" colorscheme off
-" Plugin 'vim-scripts/xoria256.vim'
-" colorscheme xoria256
-Plugin 'tomasr/molokai'
-colorscheme molokai
 
 " color the 81st column of wide lines
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -234,8 +246,9 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.engine set filetype=php
     autocmd BufRead,BufNewFile *.profile set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
+    autocmd BufRead,BufNewFile *.md   set filetype=markdown
+    autocmd BufRead,BufNewFile *.md   set spell! spelllang=fr
   augroup END
-  " autocmd BufRead,BufNewFile *.md   set filetype=markdown spelllang=fr spell
 endif
 
 
@@ -381,3 +394,20 @@ endif
 " Return to last edit position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |   exe "normal! g`\"" | endif
 "}
+
+" https://gist.github.com/tpope/287147
+" for tables like this
+"  | aa | bb | cc |
+"  | a  | b  | c  |
+"  see http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
