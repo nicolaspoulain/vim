@@ -139,21 +139,19 @@ if v:version > 703
 endif
 "}
 " VIMTEX {
-  Plugin 'lervag/vimtex'
+Plugin 'lervag/vimtex'
 let g:vimtex_compiler_latexmk = {'callback' : 0}
-  "}
+"}
 " TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
-  Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'christoomey/vim-tmux-navigator'
 "}
 " NERDTREE : A tree explorer plugin for vim {
-  Plugin 'scrooloose/nerdtree'
-  nnoremap ,n  :NERDTreeToggle<CR>
+Plugin 'scrooloose/nerdtree'
+nnoremap <leader>n  :NERDTreeToggle<CR>
 "}
 " TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
-  Plugin 'majutsushi/tagbar'
-  " nnoremap <leader>tt  :TagbarToggle<CR>
-  nmap ,t :TagbarToggle<CR>
-
+Plugin 'majutsushi/tagbar'
+nmap <leader>t :TagbarToggle<CR>
 " Add support for markdown files in tagbar.
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
@@ -169,20 +167,18 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
-
-  "}
+"}
 " VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
 Plugin 'lumiliet/vim-twig'
 "}
 " PAPERCOLOR-THEME {
-  Plugin 'NLKNguyen/papercolor-theme' " colorscheme PaperColor
-  Plugin 'pbrisbin/vim-colors-off'    " colorscheme off
-  Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
-  Plugin 'tomasr/molokai'             " colorscheme molokai
-  set t_Co=256        " Colors in the terminal
-
-  set background=dark
-  "}
+Plugin 'NLKNguyen/papercolor-theme' " colorscheme PaperColor
+Plugin 'pbrisbin/vim-colors-off'    " colorscheme off
+Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
+Plugin 'tomasr/molokai'             " colorscheme molokai
+set t_Co=256        " Colors in the terminal
+set background=dark
+"}
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
@@ -194,9 +190,11 @@ filetype plugin indent on    " required
 
 " General settings {
 
-let mapleader=','   " change map leader from \ to ,
-let maplocalleader=','   " change map leader from \ to ,
+let mapleader=','      " change map leader from \ to ,
+let maplocalleader=',' " change map leader from \ to ,
 
+" Automatically change the current directory
+autocmd BufEnter * silent! lcd %:p:h
 
 " color the 81st column of wide lines
 au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
@@ -215,7 +213,7 @@ nmap <leader>W :set invwrap<CR>:set wrap?<CR>
 map j gj
 map k gk
 
-command! -nargs=1 Silent | execute ':silent !'.<q-args> | execute ':redraw!' | execute ':set autoread'
+" command! -nargs=1 Silent | execute ':silent !'.<q-args> | execute ':redraw!' | execute ':set autoread'
 
 "}
 " Tabulations and shift {
@@ -235,6 +233,10 @@ filetype plugin on       " load the plugin files for specific file types
 filetype indent on       " load the indent file for specific file types
 let g:tex_flavor='latex' " Prevent vim from setting filetype to `plaintex`
 syntax enable            " active la coloration syntaxique
+
+" comments in italic
+highlight Comment cterm=italic
+
 " Enable Syntax Highlighting for special filetypes
 if has("autocmd")
   augroup module "For Drupal
@@ -275,15 +277,6 @@ au BufWinEnter *.* silent loadview
 " Move between buffers
 nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
-nnoremap <leader>& :buffer 1<CR>
-nnoremap <leader>é :buffer 2<CR>
-nnoremap <leader>" :buffer 3<CR>
-nnoremap <leader>' :buffer 4<CR>
-nnoremap <leader>( :buffer 5<CR>
-nnoremap <leader>- :buffer 6<CR>
-nnoremap <leader>è :buffer 7<CR>
-nnoremap <leader>_ :buffer 8<CR>
-nnoremap <leader>ç :buffer 9<CR>
 
 " move x buffer in a vsplitted window
 nnoremap <leader>w :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
@@ -322,9 +315,6 @@ let loaded_matchparen = 1 " do not show matching brackets
 "}
 "Misc {
 
-" Automatically change the current directory
-autocmd BufEnter * silent! lcd %:p:h
-
 fun! StripTrailingWhitespace()
     " Don't strip on these filetypes
     if &ft =~ 'markdown\|perl'
@@ -335,6 +325,8 @@ endfun
 " remove trailing spaces on save
 autocmd BufWritePre * call StripTrailingWhitespace()
 
+" load vimrc
+map <leader>s :vsp ~/.vim/vimrc<CR>
 
 " Toggle Display VimMyTips.md
 function OpenVMT()
@@ -393,7 +385,6 @@ endif
 
 " Return to last edit position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |   exe "normal! g`\"" | endif
-"}
 
 " https://gist.github.com/tpope/287147
 " for tables like this
@@ -411,3 +402,4 @@ function! s:align()
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
 endfunction
+"}
