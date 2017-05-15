@@ -109,52 +109,8 @@ nnoremap ,gp :Gpush<CR>
 " VIM-GITGUTTER : shows a git diff in the gutter and stages/reverts hunks {
 Plugin 'airblade/vim-gitgutter'
 "}
-" LIGHTLINE : A light and configurable statusline/tabline for vim {
-Plugin 'itchyny/lightline.vim'
-Plugin 'taohex/lightline-buffer'
-set hidden  " allow buffer switching without saving
-set showtabline=2  " always show tabline
-
-" use lightline-buffer in lightline
-let g:lightline = {
-\ 'tabline': {
- \ 'left': [ [ 'bufferinfo' ], [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
- \ 'right': [ [ 'close' ], ],
- \ },
-\ 'component_expand': {'buffercurrent': 'lightline#buffer#buffercurrent2', },
-\ 'component_type': { 'buffercurrent': 'tabsel', },
-\ 'component_function': {
- \ 'bufferbefore': 'lightline#buffer#bufferbefore',
- \ 'bufferafter': 'lightline#buffer#bufferafter',
- \ 'bufferinfo': 'lightline#buffer#bufferinfo',
- \ },
-\ }
-" lightline-buffer ui settings
-" replace with ascii characters if your environment does not support unicode
-let g:lightline_buffer_logo = ' '
-let g:lightline_buffer_readonly_icon = ''
-let g:lightline_buffer_modified_icon = '✭'
-let g:lightline_buffer_git_icon = ' '
-let g:lightline_buffer_ellipsis_icon = '..'
-let g:lightline_buffer_expand_left_icon = '◀ '
-let g:lightline_buffer_expand_right_icon = ' ▶'
-let g:lightline_buffer_active_buffer_left_icon = ''
-let g:lightline_buffer_active_buffer_right_icon = ''
-let g:lightline_buffer_separator_icon = ' '
-" lightline-buffer function settings
-let g:lightline_buffer_show_bufnr = 1
-let g:lightline_buffer_rotate = 0
-let g:lightline_buffer_fname_mod = ':t'
-let g:lightline_buffer_excludes = ['vimfiler']
-"
-let g:lightline_buffer_maxflen = 30
-let g:lightline_buffer_maxfextlen = 3
-let g:lightline_buffer_minflen = 16
-let g:lightline_buffer_minfextlen = 3
-let g:lightline_buffer_reservelen = 20
-"}
 " VIM-AIRLINE : Lean and mean status/tabline that's light as air {
-" Plugin 'bling/vim-airline'
+Plugin 'bling/vim-airline'
 " the last windows always have a status-line
 set laststatus=2
 " pretty display
@@ -170,6 +126,22 @@ let g:airline#extensions#tabline#enabled = 1
 " " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 " let g:airline#extensions#tabline#buffer_nr_show = 1
+" Change airline positions
+function! AirlineInit()
+  let g:airline_section_b = airline#section#create(['branch'])
+  " let g:airline_section_x = airline#section#create(['hunks'])
+  " let g:airline_section_y = '%y'
+  " let g:airline_section_a = airline#section#create(['mode'])
+  " let g:airline_section_b = airline#section#create_left(['hunks'])
+  " let g:airline_section_c = airline#section#create(['%f'])
+  " let g:airline_section_x = airline#section#create(['branch', 'ffenc'])
+  " let g:airline_section_y = airline#section#create(['filetype'])
+  " section z : default (percent, line, column)
+  "
+  " VOIR airline-default-sections dans h: airline
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
 
 " }
 "MARKDOWN {
@@ -446,3 +418,70 @@ function! s:align()
   endif
 endfunction
 "}
+"
+
+" LIGHTLINE : A light and configurable statusline/tabline for vim {
+" Plugin 'itchyny/lightline.vim'
+" Plugin 'taohex/lightline-buffer'
+set hidden  " allow buffer switching without saving
+set showtabline=2  " always show tabline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ }
+
+
+" use lightline-buffer in lightline
+let g:lightline = {
+\ 'tabline': {
+ \ 'left': [ [ 'bufferinfo' ], [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+ \ 'right': [ [ 'close' ], ],
+ \ },
+\ 'component_expand': {'buffercurrent': 'lightline#buffer#buffercurrent2', },
+\ 'component_type': { 'buffercurrent': 'tabsel', },
+\ 'component_function': {
+ \ 'bufferbefore': 'lightline#buffer#bufferbefore',
+ \ 'bufferafter': 'lightline#buffer#bufferafter',
+ \ 'bufferinfo': 'lightline#buffer#bufferinfo',
+ \ },
+\ }
+" lightline-buffer ui settings
+" replace with ascii characters if your environment does not support unicode
+let g:lightline_buffer_logo = ' '
+let g:lightline_buffer_readonly_icon = ''
+let g:lightline_buffer_modified_icon = '✭'
+let g:lightline_buffer_git_icon = ' '
+let g:lightline_buffer_ellipsis_icon = '..'
+let g:lightline_buffer_expand_left_icon = '◀ '
+let g:lightline_buffer_expand_right_icon = ' ▶'
+let g:lightline_buffer_active_buffer_left_icon = ''
+let g:lightline_buffer_active_buffer_right_icon = ''
+let g:lightline_buffer_separator_icon = ' '
+" lightline-buffer function settings
+let g:lightline_buffer_show_bufnr = 1
+let g:lightline_buffer_rotate = 0
+let g:lightline_buffer_fname_mod = ':t'
+let g:lightline_buffer_excludes = ['vimfiler']
+"
+let g:lightline_buffer_maxflen = 30
+let g:lightline_buffer_maxfextlen = 3
+let g:lightline_buffer_minflen = 16
+let g:lightline_buffer_minfextlen = 3
+let g:lightline_buffer_reservelen = 20
+"}
+
