@@ -28,7 +28,7 @@ Plugin 'lifepillar/vim-mucomplete'
 set completeopt+=menuone
 let g:mucomplete#chains = {}
 let g:mucomplete#chains.default=['path', 'ulti', 'incl', 'omni', 'uspl']
-let g:mucomplete#chains.markdown = ['uspl', 'path', 'ulti', 'incl', 'omni']
+let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
 
 " vim 7 doesn't support noinsert and noselect options for completeopt
 if v:version >= 800
@@ -109,8 +109,52 @@ nnoremap ,gp :Gpush<CR>
 " VIM-GITGUTTER : shows a git diff in the gutter and stages/reverts hunks {
 Plugin 'airblade/vim-gitgutter'
 "}
+" LIGHTLINE : A light and configurable statusline/tabline for vim {
+Plugin 'itchyny/lightline.vim'
+Plugin 'taohex/lightline-buffer'
+set hidden  " allow buffer switching without saving
+set showtabline=2  " always show tabline
+
+" use lightline-buffer in lightline
+let g:lightline = {
+\ 'tabline': {
+ \ 'left': [ [ 'bufferinfo' ], [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+ \ 'right': [ [ 'close' ], ],
+ \ },
+\ 'component_expand': {'buffercurrent': 'lightline#buffer#buffercurrent2', },
+\ 'component_type': { 'buffercurrent': 'tabsel', },
+\ 'component_function': {
+ \ 'bufferbefore': 'lightline#buffer#bufferbefore',
+ \ 'bufferafter': 'lightline#buffer#bufferafter',
+ \ 'bufferinfo': 'lightline#buffer#bufferinfo',
+ \ },
+\ }
+" lightline-buffer ui settings
+" replace with ascii characters if your environment does not support unicode
+let g:lightline_buffer_logo = ' '
+let g:lightline_buffer_readonly_icon = ''
+let g:lightline_buffer_modified_icon = '✭'
+let g:lightline_buffer_git_icon = ' '
+let g:lightline_buffer_ellipsis_icon = '..'
+let g:lightline_buffer_expand_left_icon = '◀ '
+let g:lightline_buffer_expand_right_icon = ' ▶'
+let g:lightline_buffer_active_buffer_left_icon = ''
+let g:lightline_buffer_active_buffer_right_icon = ''
+let g:lightline_buffer_separator_icon = ' '
+" lightline-buffer function settings
+let g:lightline_buffer_show_bufnr = 1
+let g:lightline_buffer_rotate = 0
+let g:lightline_buffer_fname_mod = ':t'
+let g:lightline_buffer_excludes = ['vimfiler']
+"
+let g:lightline_buffer_maxflen = 30
+let g:lightline_buffer_maxfextlen = 3
+let g:lightline_buffer_minflen = 16
+let g:lightline_buffer_minfextlen = 3
+let g:lightline_buffer_reservelen = 20
+"}
 " VIM-AIRLINE : Lean and mean status/tabline that's light as air {
-Plugin 'bling/vim-airline'
+" Plugin 'bling/vim-airline'
 " the last windows always have a status-line
 set laststatus=2
 " pretty display
@@ -123,10 +167,9 @@ let g:airline_symbols.paste = 'ρ'
 let g:airline_symbols.whitespace = 'Ξ'
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-"
 " " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#buffer_nr_show = 1
+" let g:airline#extensions#tabline#buffer_nr_show = 1
 
 " }
 "MARKDOWN {
@@ -147,11 +190,11 @@ Plugin 'christoomey/vim-tmux-navigator'
 "}
 " NERDTREE : A tree explorer plugin for vim {
 Plugin 'scrooloose/nerdtree'
-nnoremap <leader>n  :NERDTreeToggle<CR>
+nnoremap ,n  :NERDTreeToggle<CR>
 "}
 " TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
 Plugin 'majutsushi/tagbar'
-nmap <leader>t :TagbarToggle<CR>
+nmap ,t :TagbarToggle<CR>
 " Add support for markdown files in tagbar.
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
@@ -326,7 +369,7 @@ endfun
 autocmd BufWritePre * call StripTrailingWhitespace()
 
 " load vimrc
-map <leader>s :vsp ~/.vim/vimrc<CR>
+map <leader>s :e ~/.vim/vimrc<CR>
 
 " Toggle Display VimMyTips.md
 function OpenVMT()
