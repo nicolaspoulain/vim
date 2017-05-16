@@ -177,6 +177,27 @@ let g:tagbar_type_markdown = {
     \ 'sort': 0,
 \ }
 "}
+" EASYMOTION : vim motion on speed {
+Plugin 'easymotion/vim-easymotion'
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" <leader>f{char} to move to {char}
+map  <leader>f <Plug>(easymotion-bd-f)
+nmap <leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  ,w <Plug>(easymotion-bd-w)
+nmap ,w <Plug>(easymotion-overwin-w)
+"}
 " VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
 Plugin 'lumiliet/vim-twig'
 "}
@@ -288,7 +309,7 @@ nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 
 " move x buffer in a vsplitted window
-nnoremap <leader>w :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
+nnoremap <leader>s :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
 function VerticalSplitBuffer(buffer)
   execute "vert belowright sb" a:buffer
 endfunction
