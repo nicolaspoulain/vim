@@ -115,25 +115,31 @@ Plugin 'bling/vim-airline'
 set laststatus=2
 " pretty display
 let g:airline_symbols = {}
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.linenr = '¶'
+" let g:airline_left_sep = '▶'
+" let g:airline_right_sep = '◀'
+" let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.whitespace = 'Ξ'
+" N instead of NORMAL, I instead of INSERT
+let g:airline_mode_map = {'n' : 'N', 'i' : 'I',}
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
-" " Show just the filename
+let g:airline#extensions#tabline#buffer_nr_show = 1
+" Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
-" let g:airline#extensions#tabline#buffer_nr_show = 1
 " Change airline positions
 function! AirlineInit()
+  " Only branch (no hunks)
   let g:airline_section_b = airline#section#create(['branch'])
+  " full path %F instead of filename %f
+  let g:airline_section_c = airline#section#create(['%F', ' [', 'filetype', ']'])
+  " Do not display fileencoding
+  let g:airline_section_x =''
+  let g:airline_section_y =''
+
   " let g:airline_section_x = airline#section#create(['hunks'])
   " let g:airline_section_y = '%y'
   " let g:airline_section_a = airline#section#create(['mode'])
   " let g:airline_section_b = airline#section#create_left(['hunks'])
-  " let g:airline_section_c = airline#section#create(['%f'])
   " let g:airline_section_x = airline#section#create(['branch', 'ffenc'])
   " let g:airline_section_y = airline#section#create(['filetype'])
   " section z : default (percent, line, column)
@@ -141,8 +147,6 @@ function! AirlineInit()
   " VOIR airline-default-sections dans h: airline
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
-
-
 " }
 "MARKDOWN {
 if v:version > 703
