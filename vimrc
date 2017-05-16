@@ -138,7 +138,7 @@ function! AirlineInit()
 endfunction
 autocmd User AirlineAfterInit call AirlineInit()
 " }
-"MARKDOWN {
+"MARKDOWN : Syntax highlighting, matching rules and mappings {
 if v:version > 703
   " Plugin 'vim-pandoc/vim-pandoc'
   " Plugin 'vim-pandoc/vim-pandoc-syntax'
@@ -147,7 +147,7 @@ if v:version > 703
 " Plugin 'prurigro/vim-markdown-concealed'
 endif
 "}
-" VIMTEX {
+" VIMTEX : A modern vim plugin for editing LaTeX files {
 Plugin 'lervag/vimtex'
 let g:vimtex_compiler_latexmk = {'callback' : 0}
 "}
