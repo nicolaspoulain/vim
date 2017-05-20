@@ -22,6 +22,9 @@ call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 " }
+let mapleader=','      " change map leader from \ to ,
+let maplocalleader=',' " change map leader from \ to ,
+
 
 " VIM-MUCOMPLETE : Chained completion that works the way you want! {
 Plugin 'lifepillar/vim-mucomplete'
@@ -56,6 +59,10 @@ let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 " TABULAR : Configurable, flexible, intuitive text aligning {
 " --- BEFORE plasticboy
 Plugin 'godlygeek/tabular'
+"}
+" VIM-TABLE-MODE : for easy table formatting {
+Plugin 'dhruvasagar/vim-table-mode'
+let g:table_mode_header_fillchar='='
 "}
 " VIM-SIGNATURE : place, toggle and display marks {
 Plugin 'kshenoy/vim-signature'
@@ -103,8 +110,8 @@ let g:ctrlp_custom_ignore = {
 "}
 " VIM-FUGITIVE : A Git wrapper so awesome, it should be illegal {
 Plugin 'tpope/vim-fugitive'
-nnoremap ,gg :Gstatus<CR>
-nnoremap ,gp :Gpush<CR>
+nnoremap <Leader>gg :Gstatus<CR>
+nnoremap <Leader>gp :Gpush<CR>
 "}
 " VIM-GITGUTTER : shows a git diff in the gutter and stages/reverts hunks {
 Plugin 'airblade/vim-gitgutter'
@@ -140,8 +147,8 @@ autocmd User AirlineAfterInit call AirlineInit()
 " }
 "MARKDOWN : Syntax highlighting, matching rules and mappings {
 if v:version > 703
-  " Plugin 'vim-pandoc/vim-pandoc'
-  " Plugin 'vim-pandoc/vim-pandoc-syntax'
+  Plugin 'vim-pandoc/vim-pandoc'
+  Plugin 'vim-pandoc/vim-pandoc-syntax'
   Plugin 'plasticboy/vim-markdown'
   set conceallevel=2
 " Plugin 'prurigro/vim-markdown-concealed'
@@ -156,11 +163,14 @@ Plugin 'christoomey/vim-tmux-navigator'
 "}
 " NERDTREE : A tree explorer plugin for vim {
 Plugin 'scrooloose/nerdtree'
-nnoremap ,n  :NERDTreeToggle<CR>
+Plugin 'jistr/vim-nerdtree-tabs'
+" nnoremap <Leader>n  :NERDTreeToggle<CR>
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
 "}
 " TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
 Plugin 'majutsushi/tagbar'
-nmap ,t :TagbarToggle<CR>
+nmap <Leader>t :TagbarToggle<CR>
 " Add support for markdown files in tagbar.
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
@@ -183,9 +193,9 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
 
-" <leader>f{char} to move to {char}
-map  <leader>f <Plug>(easymotion-bd-f)
-nmap <leader>f <Plug>(easymotion-overwin-f)
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " s{char}{char} to move to {char}{char}
 nmap s <Plug>(easymotion-overwin-f2)
@@ -195,11 +205,14 @@ map <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 " Move to word
-map  ,w <Plug>(easymotion-bd-w)
-nmap ,w <Plug>(easymotion-overwin-w)
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 "}
 " VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
 Plugin 'lumiliet/vim-twig'
+"}
+" VIM-PASTE-EASY : Automatically set paste for you {
+Plugin 'roxma/vim-paste-easy'
 "}
 " PAPERCOLOR-THEME {
 Plugin 'NLKNguyen/papercolor-theme' " colorscheme PaperColor
@@ -220,9 +233,6 @@ filetype plugin indent on    " required
 
 " General settings {
 
-let mapleader=','      " change map leader from \ to ,
-let maplocalleader=',' " change map leader from \ to ,
-
 " Automatically change the current directory
 autocmd BufEnter * silent! lcd %:p:h
 
@@ -238,7 +248,7 @@ set list " Show invisible characters
 let &listchars = "tab:>-,trail:\u2591,extends:>,precedes:<,nbsp:\u00b7"
 
 set wrap            " wrap lines (we map leader-W to toggle)
-nmap <leader>W :set invwrap<CR>:set wrap?<CR>
+nmap <Leader>W :set invwrap<CR>:set wrap?<CR>
 " Moving around long lines made easy if wrap is on
 map j gj
 map k gk
@@ -309,7 +319,7 @@ nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 
 " move x buffer in a vsplitted window
-nnoremap <leader>s :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
+nnoremap <Leader>s :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
 function VerticalSplitBuffer(buffer)
   execute "vert belowright sb" a:buffer
 endfunction
@@ -337,8 +347,8 @@ set incsearch  " incremental searching : search as you type
 set hlsearch   " Highlight search matches
 set ignorecase " Ignore case in search patterns
 set smartcase  " Case sensitive if pattern contains upper case characters
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+" Disable highlight when <Leader><cr> is pressed
+map <silent> <Leader><cr> :noh<cr>
 "set showmatch       " show matching brackets "(:),{:},[:]"
 "set matchpairs+=<:> " add "<:>" as a matching pair
 let loaded_matchparen = 1 " do not show matching brackets
@@ -356,7 +366,7 @@ endfun
 autocmd BufWritePre * call StripTrailingWhitespace()
 
 " load vimrc
-map <leader>s :e ~/.vim/vimrc<CR>
+map <Leader>s :e ~/.vim/vimrc<CR>
 
 " Toggle Display VimMyTips.md
 function OpenVMT()
@@ -402,7 +412,7 @@ set nowritebackup " don't make a backup before overwriting
 set noswapfile    " don't litter swap files everywhere
 
 " Change working directory to the directory of the open buffer.
-nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+nnoremap <Leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " undo
 if has('persistent_undo')
@@ -421,82 +431,15 @@ autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |   exe "no
 "  | aa | bb | cc |
 "  | a  | b  | c  |
 "  see http://vimcasts.org/episodes/aligning-text-with-tabular-vim/
-inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
-function! s:align()
-  let p = '^\s*|\s.*\s|\s*$'
-  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
-    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
-    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
-    Tabularize/|/l1
-    normal! 0
-    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
-  endif
-endfunction
+" inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+" function! s:align()
+  " let p = '^\s*|\s.*\s|\s*$'
+  " if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    " let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    " let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    " Tabularize/|/l1
+    " normal! 0
+    " call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  " endif
+" endfunction
 "}
-"
-
-" LIGHTLINE : A light and configurable statusline/tabline for vim {
-" Plugin 'itchyny/lightline.vim'
-" Plugin 'taohex/lightline-buffer'
-set hidden  " allow buffer switching without saving
-set showtabline=2  " always show tabline
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
-
-
-" use lightline-buffer in lightline
-let g:lightline = {
-\ 'tabline': {
- \ 'left': [ [ 'bufferinfo' ], [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
- \ 'right': [ [ 'close' ], ],
- \ },
-\ 'component_expand': {'buffercurrent': 'lightline#buffer#buffercurrent2', },
-\ 'component_type': { 'buffercurrent': 'tabsel', },
-\ 'component_function': {
- \ 'bufferbefore': 'lightline#buffer#bufferbefore',
- \ 'bufferafter': 'lightline#buffer#bufferafter',
- \ 'bufferinfo': 'lightline#buffer#bufferinfo',
- \ },
-\ }
-" lightline-buffer ui settings
-" replace with ascii characters if your environment does not support unicode
-let g:lightline_buffer_logo = ' '
-let g:lightline_buffer_readonly_icon = ''
-let g:lightline_buffer_modified_icon = '✭'
-let g:lightline_buffer_git_icon = ' '
-let g:lightline_buffer_ellipsis_icon = '..'
-let g:lightline_buffer_expand_left_icon = '◀ '
-let g:lightline_buffer_expand_right_icon = ' ▶'
-let g:lightline_buffer_active_buffer_left_icon = ''
-let g:lightline_buffer_active_buffer_right_icon = ''
-let g:lightline_buffer_separator_icon = ' '
-" lightline-buffer function settings
-let g:lightline_buffer_show_bufnr = 1
-let g:lightline_buffer_rotate = 0
-let g:lightline_buffer_fname_mod = ':t'
-let g:lightline_buffer_excludes = ['vimfiler']
-"
-let g:lightline_buffer_maxflen = 30
-let g:lightline_buffer_maxfextlen = 3
-let g:lightline_buffer_minflen = 16
-let g:lightline_buffer_minfextlen = 3
-let g:lightline_buffer_reservelen = 20
-"}
-

@@ -124,7 +124,9 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 :TagbarToggle             | |TAGBAR| (maped to <F8>)
 tt      :NERDTreeToggle   | |NERDTREE|
 ,c<Space>  ,  cs          | |NERDCOMMENTER| toggle comment, sexy comment
-:Tabularize /,/c1         | |TABULAR| aligns statements on x
+:Tabularize /x/r0c1l0     | |TABULAR| aligns statements on x
+<Leader>tm                | |TABLE_MODE| toggle table mode : | and ||
+<Leader>tt                |            tabulize visually selected content
 
                           | TEXT-OBJECT and *SURROUND*
 --------------------------| ---------------------------------------------
