@@ -130,7 +130,7 @@ tt      :NERDTreeToggle   | |NERDTREE|
 
                           | TEXT-OBJECT and *SURROUND*
 --------------------------| ---------------------------------------------
-╔╓a<   ┌  a"  ┐╖       at╗| Around the delimitor
+╔╓a<    ┌ a" ┐ ╖      at╗ | Around the delimitor
  <p id= " xy " > abc </p> |    example
   ╚i<    └i"┘ ╝ └ it┘     | Inside the delimitor (t for a pair of tags)
 cst<i>                    | <p>abc</p> to <i>abc</i>  |SURROUND|
