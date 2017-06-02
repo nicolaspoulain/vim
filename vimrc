@@ -82,6 +82,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Plugin 'w0rp/ale'
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 "}
 " NERDCOMMENTER : Vim plugin for intensely orgasmic commenting {
 Plugin 'scrooloose/nerdcommenter'
@@ -142,13 +148,17 @@ function! AirlineInit()
   call airline#parts#define_raw('linenr', '%l')
   call airline#parts#define_accent('linenr', 'bold')
   let g:airline_section_z = airline#section#create(['%3p%% ', g:airline_symbols.linenr, 'linenr', ':%c'])
+  call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+  call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+  let g:airline_section_error = airline#section#create_right(['ALE'])
 endfunction
+
 autocmd User AirlineAfterInit call AirlineInit()
 " }
 "MARKDOWN : Syntax highlighting, matching rules and mappings {
 if v:version > 703
-  Plugin 'vim-pandoc/vim-pandoc'
-  Plugin 'vim-pandoc/vim-pandoc-syntax'
+  " Plugin 'vim-pandoc/vim-pandoc'
+  " Plugin 'vim-pandoc/vim-pandoc-syntax'
   Plugin 'plasticboy/vim-markdown'
   set conceallevel=2
 " Plugin 'prurigro/vim-markdown-concealed'
@@ -221,6 +231,15 @@ Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
 Plugin 'tomasr/molokai'             " colorscheme molokai
 set t_Co=256        " Colors in the terminal
 set background=dark
+"}
+" VIMWIKI : A Personal Wiki For Vim {
+Plugin 'vimwiki/vimwiki'
+  nmap <Leader>wn <Plug>VimwikiNextLink
+  let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md',
+        \'path_html': '~/Dropbox/travaux/vimwiki'}]
+  let g:vimwiki_ext2syntax = {'.md': 'markdown',
+                  \ '.mkd': 'markdown',
+                  \ '.wiki': 'media'}
 "}
 
 " Plugin Vundle setup END {

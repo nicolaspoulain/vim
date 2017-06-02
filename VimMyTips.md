@@ -34,6 +34,11 @@ CTRL-X-CTRL-O             | omnicompletion
 CTRL-X-CTRL-N             | file completion
 CTRL-N                    | all buffers completion
 
+                          | |VIMWIKI|
+------------------------- | ---------------------------------------------
+<Leader>ww , <BS>         | go/back to the main page of the wiki
+<Leader>wi , <BS>         | go/back to the diary index
+
                           | SPELL
 ------------------------- | ---------------------------------------------
 zg, zw                    | add word under cursor as good / bad
