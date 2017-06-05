@@ -148,7 +148,7 @@ cs)<p>                    | (abc) to <p>abc</p>          "
 --------------------------| ---------------------------------------------
 :vimgrep /ptrn/ **        | search files containing ptrn recursively
 :vimgrep /ptrn/ **/*.txt  |  idem in txt files
-     :copen             |  open result lists
+:copen              |  open result lists
 * , g*                    | search forwd whole/partial word under cursor
 [I                        | display all lines contain word under cursor
 :g[!]/{prtn}/[cmd]        | execute [cmd] on lines matching(!NOT) {ptrn}

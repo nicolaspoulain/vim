@@ -340,8 +340,8 @@ au BufWinEnter *.* silent loadview
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap [C :bnext<CR>
-nnoremap [D :bprevious<CR>
+nnoremap [C :bnext<CR>     " is <C-right_arrow>
+nnoremap [D :bprevious<CR> " is <C-left_arrow>
 
 " move x buffer in a vsplitted window
 nnoremap <Leader>s :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
