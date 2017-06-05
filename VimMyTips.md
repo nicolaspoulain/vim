@@ -126,7 +126,7 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
                           | PLUGINS
 ------------------------- | ---------------------------------------------
 :Gstatus                  | |FUGITIVE| - to un/stage, cc to commit msg
-:TagbarToggle             | |TAGBAR| (maped to <F8>)
+:TagbarToggle             | |TAGBAR| (maped to <Leader>t )
 <Leader>n :NERDTreeToggle | |NERDTREE|
 ,c<Space>  ,  cs          | |NERDCOMMENTER| toggle comment, sexy comment
 :Tabularize /x/r0c1l0     | |TABULAR| aligns statements on x
