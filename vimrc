@@ -211,7 +211,7 @@ nmap <Leader>f <Plug>(easymotion-overwin-f)
 nmap s <Plug>(easymotion-overwin-f2)
 
 " Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
+map  <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 " Move to word
@@ -246,6 +246,16 @@ Plugin 'vimwiki/vimwiki'
 "}
 " STARTIFY : The fancy start screen for Vim and Neovim {
 Plugin 'mhinz/vim-startify'
+    let g:startify_custom_indices = ['f', 'g', 'h']
+    let g:startify_bookmarks = [
+            \ { 'p': '~/Dropbox/Applications/Plain.txt/' },
+            \ { 's': '~/.vim/vimrc' },
+            \ { 'v': '~/.vim/VimMyTips.md' },
+            \ ]
+    let g:startify_list_order = [
+            \ ['   MRU'], 'files',
+            \ ['   Bookmarks'], 'bookmarks'
+            \]
 "}
 
 " Plugin Vundle setup END {
@@ -399,6 +409,7 @@ function OpenVMT()
   vertical resize 74
   call cursor(40,1)
   normal! zz
+  set nonumber
 endfunction
 map vv :call OpenVMT()<CR>
 autocmd BufRead  VimMyTips.md map vv :q<CR>
