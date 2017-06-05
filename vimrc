@@ -6,8 +6,6 @@
 " Instalation :
 " git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " Launch vim with this .vimrc, then :BundleInstall
-" sudo apt-get install build-essential cmake python-dev python3-dev
-" cd ~/.vim/bundle/YouCompleteMe && ./install.py
 " ======================================================
 " }
 
@@ -24,7 +22,6 @@ call vundle#begin()
 " }
 let mapleader=','      " change map leader from \ to ,
 let maplocalleader=',' " change map leader from \ to ,
-
 
 " VIM-MUCOMPLETE : Chained completion that works the way you want! {
 Plugin 'lifepillar/vim-mucomplete'
@@ -280,10 +277,14 @@ set showcmd         " display incomplete commands
 set scrolloff=4     " keep 4 lines between current line and screen edge
 set sidescrolloff=2 " keep 2 cols between the current col screen edge
 set list " Show invisible characters
-let &listchars = "tab:>-,trail:\u2591,extends:>,precedes:<,nbsp:\u00b7"
+" let &listchars = "tab:▸\ ,eol:↲,trail:\u2591,extends:>,precedes:<,nbsp:\u00b7"
+set showbreak=↪\
+set listchars=tab:→\ ,nbsp:␣,trail:░,extends:>,precedes:<
+
 
 set wrap            " wrap lines (we map leader-W to toggle)
 nmap <Leader>W :set invwrap<CR>:set wrap?<CR>
+
 " Moving around long lines made easy if wrap is on
 map j gj
 map k gk
@@ -292,10 +293,10 @@ map k gk
 
 "}
 " Tabulations and shift {
+set expandtab         " uses spaces whent tab is inserted
+set softtabstop=2     " number of spaces that tabs insert
 set tabstop=2         " number of spaces that a tab renders as
 set shiftwidth=2      " number of spaces to use for autoindent
-set softtabstop=2     " number of spaces that tabs insert
-set expandtab         " uses spaces whent tab is inserted
 set smarttab          " helps with backspacing because of expandtab
 set backspace=2       " make backspace work like most other apps
 set smartindent       " indent is automatically and smartly inserted
@@ -330,9 +331,6 @@ endif
 
 
 hi SpellBad ctermfg=015 ctermbg=000 cterm=none guifg=#FFFFFF guibg=#000000
-" Highlight trailing whitespace.
-highlight ExtraWhitespace ctermbg=red guibg=red
-let a = matchadd('ExtraWhitespace', '\s\+$')
 
 
 "}
@@ -390,15 +388,18 @@ let loaded_matchparen = 1 " do not show matching brackets
 "}
 "Misc {
 
+" Highlight trailing whitespace.
+highlight ExtraWhitespace ctermbg=red guibg=red
+let a = matchadd('ExtraWhitespace', '\s\+$')
+" remove trailing whitespaces on save
+autocmd BufWritePre * call StripTrailingWhitespace()
 fun! StripTrailingWhitespace()
-    " Don't strip on these filetypes
+    " Don't remove on these filetypes
     if &ft =~ 'markdown\|perl'
         return
     endif
     %s/\s\+$//e
 endfun
-" remove trailing spaces on save
-autocmd BufWritePre * call StripTrailingWhitespace()
 
 " load vimrc
 map <Leader>s :e ~/.vim/vimrc<CR>
