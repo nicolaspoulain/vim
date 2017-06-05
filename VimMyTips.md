@@ -132,7 +132,7 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 :Tabularize /x/r0c1l0     | |TABULAR| aligns statements on x
 <Leader>tm                | |TABLE_MODE| toggle table mode : | and ||
 <Leader>tt                |            tabulize visually selected content
-<Leader>f,L,w   ,   s     | |EASYMTION| move to {chr},line,word, {chr}{chr}
+<Leader>f,L,w   ,   s     | |EASYMTION| move to {chr},line,wrd, {chr}{chr}
 
                           | TEXT-OBJECT and *SURROUND*
 --------------------------| ---------------------------------------------
