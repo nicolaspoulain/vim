@@ -51,14 +51,14 @@ CTRL-W =   , CTRL-W _ , | | make Windows same, max height/width
 CTRL-W +-<> , CTRL-W +++  | resize window
 CTRL-W hjkl , CTRL arrows | focus to far left,down,up,right window
 CTRL-W HJKL               | move current window to far left,down,up,right
-map: ,vs                  | split long file into 2 continuous windows
+map: <Leader>vs           | split long file into 2 continuous windows
 
                           | BUFFERS
 ------------------------- | ---------------------------------------------
 :e[dit] {file}  :Sex :Vex | open {file} in new, split, vsplit window
 :sb x , vsp | bx, (map:,W | x buffer in a (v)splited window
 :sball , :bw              | split all buffers , close current buffer
-:bn , :bp                 | next/prev buffer (maped to <TAB> <S-Tab>)
+:bn , :bp                 | next/prev buffer (maped to <Leader>n/p)
 
                           | VISUAL MODE ie TEXT BLOCKS
 ------------------------- | ---------------------------------------------
@@ -127,7 +127,7 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 ------------------------- | ---------------------------------------------
 :Gstatus                  | |FUGITIVE| - to un/stage, cc to commit msg
 :TagbarToggle             | |TAGBAR| (maped to <F8>)
-tt      :NERDTreeToggle   | |NERDTREE|
+<Leader>n :NERDTreeToggle | |NERDTREE|
 ,c<Space>  ,  cs          | |NERDCOMMENTER| toggle comment, sexy comment
 :Tabularize /x/r0c1l0     | |TABULAR| aligns statements on x
 <Leader>tm                | |TABLE_MODE| toggle table mode : | and ||

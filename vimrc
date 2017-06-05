@@ -175,7 +175,7 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 " nnoremap <Leader>n  :NERDTreeToggle<CR>
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <Leader>e <plug>NERDTreeTabsToggle<CR>
 
 "}
 " TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
@@ -218,6 +218,9 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 "}
+" NUMBERS : a plugin for intelligently toggling line numbers {
+Plugin 'myusuf3/numbers.vim'
+" }
 " VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
 Plugin 'lumiliet/vim-twig'
 "}
@@ -240,6 +243,9 @@ Plugin 'vimwiki/vimwiki'
   let g:vimwiki_ext2syntax = {'.md': 'markdown',
                   \ '.mkd': 'markdown',
                   \ '.wiki': 'media'}
+"}
+" STARTIFY : The fancy start screen for Vim and Neovim {
+Plugin 'mhinz/vim-startify'
 "}
 
 " Plugin Vundle setup END {
@@ -334,8 +340,8 @@ au BufWinEnter *.* silent loadview
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap <TAB> :bnext<CR>
-nnoremap <S-TAB> :bprevious<CR>
+nnoremap <Leader>n :bnext<CR>
+nnoremap <Leader>p :bprevious<CR>
 
 " move x buffer in a vsplitted window
 nnoremap <Leader>s :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
