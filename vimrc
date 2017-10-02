@@ -30,6 +30,14 @@ let g:mucomplete#chains = {}
 let g:mucomplete#chains.default=['path', 'ulti', 'incl', 'omni', 'uspl']
 let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
 
+" inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
+" inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
+" inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
+
+" https://github.com/lifepillar/vim-mucomplete/commit/8e1ddf51f47cd5351cb37a622c5eec1c9c6d2130
+inoremap <silent> <plug>(MUcompleteFwdKey) <c-b>
+imap <c-b> <plug>(MUcompleteCycFwd)
+
 " vim 7 doesn't support noinsert and noselect options for completeopt
 if v:version >= 800
   set shortmess+=c
@@ -157,7 +165,7 @@ if v:version > 703
   " Plugin 'vim-pandoc/vim-pandoc'
   " Plugin 'vim-pandoc/vim-pandoc-syntax'
   Plugin 'plasticboy/vim-markdown'
-  set conceallevel=2
+  " set conceallevel=2
 " Plugin 'prurigro/vim-markdown-concealed'
 endif
 "}
@@ -178,6 +186,7 @@ map <Leader>e <plug>NERDTreeTabsToggle<CR>
 " TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
 Plugin 'majutsushi/tagbar'
 nmap <Leader>t :TagbarToggle<CR>
+autocmd FileType markdown nmap <Leader>t :Toc<CR>
 " Add support for markdown files in tagbar.
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
@@ -229,17 +238,19 @@ Plugin 'NLKNguyen/papercolor-theme' " colorscheme PaperColor
 Plugin 'pbrisbin/vim-colors-off'    " colorscheme off
 Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
 Plugin 'tomasr/molokai'             " colorscheme molokai
+colorscheme elflord
 set t_Co=256        " Colors in the terminal
 set background=dark
 "}
 " VIMWIKI : A Personal Wiki For Vim {
-Plugin 'vimwiki/vimwiki'
-  nmap <Leader>wn <Plug>VimwikiNextLink
-  let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md',
-        \'path_html': '~/Dropbox/travaux/vimwiki'}]
-  let g:vimwiki_ext2syntax = {'.md': 'markdown',
-                  \ '.mkd': 'markdown',
-                  \ '.wiki': 'media'}
+" Plugin 'vimwiki/vimwiki'
+  " nmap <Leader>wn <Plug>VimwikiNextLink
+" Plugin 'freitass/todo.txt-vim'
+  " let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md',
+        " \'path_html': '~/Dropbox/travaux/vimwiki'}]
+  " let g:vimwiki_ext2syntax = {'.md': 'markdown',
+                  " \ '.mkd': 'markdown',
+                  " \ '.wiki': 'media'}
 "}
 " STARTIFY : The fancy start screen for Vim and Neovim {
 Plugin 'mhinz/vim-startify'
@@ -264,6 +275,8 @@ filetype plugin indent on    " required
 " }
 
 " General settings {
+autocmd BufNewFile *.py :set omnifunc=python3complete#Complete
+autocmd BufEnter *.py :set omnifunc=python3complete#Complete
 
 " Automatically change the current directory
 autocmd BufEnter * silent! lcd %:p:h
@@ -277,10 +290,12 @@ set showcmd         " display incomplete commands
 set scrolloff=4     " keep 4 lines between current line and screen edge
 set sidescrolloff=2 " keep 2 cols between the current col screen edge
 set list " Show invisible characters
-" let &listchars = "tab:▸\ ,eol:↲,trail:\u2591,extends:>,precedes:<,nbsp:\u00b7"
+" set listchars = tab:▸\ ,nbsp:\u00b7,trail:\u2591,extends:>,precedes:<,eol:↲
+" set listchars = tab:→\ ,nbsp:␣     ,trail:░     ,extends:>,precedes:<
 set showbreak=↪\
-set listchars=tab:→\ ,nbsp:␣,trail:░,extends:>,precedes:<
-
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
 
 set wrap            " wrap lines (we map leader-W to toggle)
 nmap <Leader>W :set invwrap<CR>:set wrap?<CR>
