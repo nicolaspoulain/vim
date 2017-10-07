@@ -9,9 +9,9 @@ s                         | Substitute char on cursor (s is cl)
 
                           | MOTIONS
 ------------------------- | ---------------------------------------------
-    k  CTRL-U  CTRL-B  gg | move up  1 line, 1/2 page, 1 page, 1st line
-0 bh*le w $               | moves on line
-    j  CTRL-D  CTRL-F  G  | move dwn 1 line, 1/2 page, 1 page, last line
+ █k { H  C-U C-B ?str gg  | moves up
+0^ Fx Tx b h█l e w tx fx $| moves on line
+ G /str C-F C-D L } j █   | moves down
 NG (or :N)                | move to line N
 f{char} , F{char}         | jump For next,prev {char} (Repeat ;/,)
 /{ptrn} , ?{ptrn}         | search   next,prev {ptrn} (Repeat n/N)
@@ -23,16 +23,16 @@ q{0-9a-zA-Z"}             | record into reg {0-9a-zA-Z"} (A-Z to append)
 q                         | stop recording
 [cnt]@{0-9a-zA-Z"}        | exec. content of reg {0-9a-z".=*+} [cnt]times
 [cnt]@@                   | repeat the previous @{0-9a-z":*} [cnt] times
-"hp , CTRL-R h            | display recording h normal/insert mode
+"hp , C-R    h            | display recording h normal/insert mode
 "hdd                      | record text as action into register h
 
 :h ins-completion         | |MUCOMPLETE| & |ULTISNIPS|
 ------------------------- | ---------------------------------------------
-TAB   (CTRL-H)            | complete list (try another µcompl chain)
-CTRL-J                    | snippet expand & jump
-CTRL-X-CTRL-O             | omnicompletion
-CTRL-X-CTRL-N             | file completion
-CTRL-N                    | all buffers completion
+TAB   (C-H   )            | complete list (try another µcompl chain)
+C-J                       | snippet expand & jump
+C-X   -C-O                | omnicompletion
+C-X   -C-N                | file completion
+C-N                       | all buffers completion
 
                           | |VIMWIKI|
 ------------------------- | ---------------------------------------------
@@ -47,11 +47,11 @@ zg, zw                    | add word under cursor as good / bad
 
                           | SPLITS |VIM-MAXIMIZER|
 ------------------------- | ---------------------------------------------
-CTRL-W s , v , q          | split/vspilt/close window
-CTRL-W =   , CTRL-W _ , | | make Windows same, max height/width
-CTRL-W +-<> , CTRL-W +++  | resize window
-CTRL-W hjkl , CTRL arrows | focus to far left,down,up,right window
-CTRL-W HJKL               | move current window to far left,down,up,right
+C-W    s , v , q          | split/vspilt/close window
+C-W    =   , C-W    _ , | | make Windows same, max height/width
+C-W    +-<> , C-W    +++  | resize window
+C-W    hjkl , CTRL arrows | focus to far left,down,up,right window
+C-W    HJKL               | move current window to far left,down,up,right
 map: <Leader>vs           | split long file into 2 continuous windows
 
                           | BUFFERS
@@ -63,17 +63,17 @@ map: <Leader>vs           | split long file into 2 continuous windows
 
                           | VISUAL MODE ie TEXT BLOCKS
 ------------------------- | ---------------------------------------------
-v , CTRL-V  , V           | Visual mode perChar/ linewise / blockwise
+v , C-V     , V           | Visual mode perChar/ linewise / blockwise
 gv                        | visual mode with same area as previous
 
                           | INSERT ON MANY LINES
 ------------------------- | ---------------------------------------------
-CTRL-V  jjj $ A foo Esc   | insert at end of each line of visual block
-CTRL-V  jjj I foo Esc     | insert in the column of visual block
+C-V     jjj $ A foo Esc   | insert at end of each line of visual block
+C-V     jjj I foo Esc     | insert in the column of visual block
 
                           | INDENT, AUTOINDENT, FORMAT
 ------------------------- | ---------------------------------------------
->>  << , CTRL-T  CTRL-D   | shift right left, norml/insrt mode Tabularize
+>>  << , C-T     C-D      | shift right left, norml/insrt mode Tabularize
 gg=G                      | eventually: set filetype=js + set smartindent
 == , =                    | autoIndent current line, current block
 Vu , VU , V~              | lowercase, uppercase, toggle entire line
@@ -88,7 +88,7 @@ gq{motion}                | format the lines that {motion} moves over
                           |    or put (use uppercase char to append with)
 "5yy , "hyy               | Yank line into register 5 (or h)
 :reg                      | list registers
-"5p  , "hp , i CTRL-R h   | Put register 5 (or h) content after cursor
+"5p  , "hp , i C-R    h   | Put register 5 (or h) content after cursor
 "_dd                      | Delete to BlackHole don't affect any register
 
                           | FOLDING COMMANDS
@@ -102,18 +102,18 @@ zf{motion} , {visual}zf   | creates a fold (e.g zf% fold matching pair)
 m{a-zA-Z}                 | set/unset mark at cursor position (no motion)
 '{a-z} '{A-Z0-9}          | jump to mark in buffer/ file where it was set
 '', ``                    | move cursor to last position
-CTRL-O, CTRL-I            | back/forward in jumplist (see :ju)
+C-O   , C-I               | back/forward in jumplist (see :ju)
 :marks  : delmarks!       | list, delete current marks
 
                           | MISC
 ------------------------- | ---------------------------------------------
 .   ,   @:                | repeat last modification/ :command (then @@)
 :history                  | list of all your commands
-/CTRL-R CTRL-W            | pull <cword> onto search/command line
+/C-R    C-W               | pull <cword> onto search/command line
 ga                        | display hex value of char under cursor
-CTRL-V 233                | insert é (ins mode) see :dig for utf8 chars
-CTRL-A  , CTRL-X          | add, Substract N to the number after cursor
-CTRL-R =5*5               | insert 25 into text
+C-V    233                | insert é (ins mode) see :dig for utf8 chars
+C-A     , C-X             | add, Substract N to the number after cursor
+C-R    =5*5               | insert 25 into text
 :set paste :set nopaste   | toggle paste mode (maped to <F12>)
 :m :qsort [n]                 | sort column 1 [numeric]
 :%!sort -t';' -k3 [-n]    | sort column 3 of coma separated [numeric]
