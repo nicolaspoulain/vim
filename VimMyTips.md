@@ -1,4 +1,4 @@
-" vim:tw=78 nospell nonumber:
+" vim:tw=78 nospell nonumber norelativenumber:
                           | ENTERING INSERT MODE
 ------------------------- | ---------------------------------------------
 i , a , I , A             | InsertBefore, AppendAfter cursor (I=^i, A=$a)
