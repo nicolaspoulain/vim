@@ -183,6 +183,11 @@ Plugin 'jistr/vim-nerdtree-tabs'
 map <Leader>e <plug>NERDTreeTabsToggle<CR>
 
 "}
+" EASYTAGS : Automated tag file generation and syntax highlighting of tags {
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+set tags=tags;/
+"}
 " TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
 Plugin 'majutsushi/tagbar'
 nmap <Leader>t :TagbarToggle<CR>
@@ -363,8 +368,8 @@ au BufWinEnter *.* silent loadview
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap [C :bnext<CR>     " is <C-right_arrow>
-nnoremap [D :bprevious<CR> " is <C-left_arrow>
+nnoremap <C-Right> :bnext<CR>     " is <C-right_arrow>
+nnoremap <C-Left> :bprevious<CR> " is <C-left_arrow>
 
 " move x buffer in a vsplitted window
 nnoremap <Leader>s :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
@@ -477,6 +482,19 @@ endif
 
 " Return to last edit position when opening files
 autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") |   exe "normal! g`\"" | endif
+
+
+" Enable Elite mode, No ARRRROWWS!!!!
+let g:elite_mode=1
+" Disable arrow movement, resize splits instead.
+if get(g:, 'elite_mode')
+	nnoremap <Up>    :resize +2<CR>
+	nnoremap <Down>  :resize -2<CR>
+	nnoremap <Left>  :vertical resize +2<CR>
+	nnoremap <Right> :vertical resize -2<CR>
+endif
+
+
 
 " https://gist.github.com/tpope/287147
 " for tables like this

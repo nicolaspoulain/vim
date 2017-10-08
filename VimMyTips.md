@@ -59,7 +59,7 @@ map: <Leader>vs           | split long file into 2 continuous windows
 :e[dit] {file}  :Sex :Vex | open {file} in new, split, vsplit window
 :sb x , vsp | bx, (map:,W | x buffer in a (v)splited window
 :sball , :bw              | split all buffers , close current buffer
-:bn , :bp                 | next/prev buffer (maped to <Leader>n/p)
+:bn , :bp                 | next/prev buffer (maped to C-→> C-←)
 
                           | VISUAL MODE ie TEXT BLOCKS
 ------------------------- | ---------------------------------------------
