@@ -24,27 +24,30 @@ let mapleader=','      " change map leader from \ to ,
 let maplocalleader=',' " change map leader from \ to ,
 
 " VIM-MUCOMPLETE : Chained completion that works the way you want! {
-Plugin 'lifepillar/vim-mucomplete'
-set completeopt+=menuone
-let g:mucomplete#chains = {}
-let g:mucomplete#chains.default=['path', 'ulti', 'incl', 'omni', 'uspl']
-let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
+" Plugin 'lifepillar/vim-mucomplete'
+" set completeopt+=menuone
+" let g:mucomplete#chains = {}
+" let g:mucomplete#chains.default=['path', 'ulti', 'incl', 'omni', 'uspl']
+" let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
 
-" inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
-" inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
-" inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
+" " inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
+" " inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
+" " inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
 
-" https://github.com/lifepillar/vim-mucomplete/commit/8e1ddf51f47cd5351cb37a622c5eec1c9c6d2130
-inoremap <silent> <plug>(MUcompleteFwdKey) <c-b>
-imap <c-b> <plug>(MUcompleteCycFwd)
+" " https://github.com/lifepillar/vim-mucomplete/commit/8e1ddf51f47cd5351cb37a622c5eec1c9c6d2130
+" inoremap <silent> <plug>(MUcompleteFwdKey) <c-b>
+" imap <c-b> <plug>(MUcompleteCycFwd)
 
-" vim 7 doesn't support noinsert and noselect options for completeopt
-if v:version >= 800
-  set shortmess+=c
-  set completeopt+=noinsert
-  set completeopt+=noselect
-  let g:mucomplete#enable_auto_at_startup = 1
-endif
+" " vim 7 doesn't support noinsert and noselect options for completeopt
+" if v:version >= 800
+  " set shortmess+=c
+  " set completeopt+=noinsert
+  " set completeopt+=noselect
+  " let g:mucomplete#enable_auto_at_startup = 1
+" endif
+" }
+" YOUCOMPLETEME : a code-completion engine for Vim {
+Plugin 'valloric/youcompleteme'
 " }
 " ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
 Plugin 'SirVer/ultisnips'
@@ -181,7 +184,9 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 " nnoremap <Leader>n  :NERDTreeToggle<CR>
 map <Leader>e <plug>NERDTreeTabsToggle<CR>
-
+"}
+" BUFKILL : unload, delete or wipe a buffer without closing the window or split {
+Plugin 'qpkorr/vim-bufkill'
 "}
 " EASYTAGS : Automated tag file generation and syntax highlighting of tags {
 Plugin 'xolox/vim-misc'
@@ -355,13 +360,14 @@ hi SpellBad ctermfg=015 ctermbg=000 cterm=none guifg=#FFFFFF guibg=#000000
 
 "}
 " Folds {
-set foldmethod=syntax " fdm: fold by the indentation by default
-set foldnestmax=10    " fdn: deepest fold is 10 levels
-"set nofoldenable      " nofen: don't fold by default
-set foldlevel=1
-" save and restore folds
-au BufWinLeave *.* mkview
-au BufWinEnter *.* silent loadview
+" set foldmethod=syntax " fdm: fold by the indentation by default
+" set foldnestmax=10    " fdn: deepest fold is 10 levels
+" "set nofoldenable      " nofen: don't fold by default
+" set foldlevel=1
+" " save and restore folds
+" set sessionoptions+=folds
+" au BufWinLeave *.* mkview
+" au BufWinEnter *.* silent loadview
 
 
 " }
