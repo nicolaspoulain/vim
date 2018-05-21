@@ -336,7 +336,7 @@ let g:tex_flavor='latex' " Prevent vim from setting filetype to `plaintex`
 syntax enable            " active la coloration syntaxique
 
 " comments in italic
-highlight Comment cterm=italic
+" highlight Comment cterm=italic
 
 " Enable Syntax Highlighting for special filetypes
 if has("autocmd")
