@@ -7,14 +7,22 @@
 # ~-55 so that other filetypes will still overwrite.
 priority 10
 
+global !p
+import re
+import unidecode
+def slugify(text):
+    text = unidecode.unidecode(text).lower()
+    return re.sub(r'\W+', '-', text)
+endglobal
+
 snippet yaml "Yaml block"
 ---
-date: ${2:`date +%Y-%m-%d__%H:%M`}
-tags: $3
 title: ${1:Meet UltiSnips}
+permalink: `!p snip.rv = slugify(t[1])`
+layout: post
+date: ${2:`date +%Y-%m-%d`}
+tags: [${3:tag}]
 ---
-
-# $1
 
 $0
 endsnippet
