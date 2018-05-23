@@ -245,16 +245,6 @@ colorscheme elflord
 set t_Co=256        " Colors in the terminal
 set background=dark
 "}
-" VIMWIKI : A Personal Wiki For Vim {
-" Plugin 'vimwiki/vimwiki'
-  " nmap <Leader>wn <Plug>VimwikiNextLink
-" Plugin 'freitass/todo.txt-vim'
-  " let g:vimwiki_list = [{'syntax': 'markdown', 'ext': '.md',
-        " \'path_html': '~/Dropbox/travaux/vimwiki'}]
-  " let g:vimwiki_ext2syntax = {'.md': 'markdown',
-                  " \ '.mkd': 'markdown',
-                  " \ '.wiki': 'media'}
-"}
 " STARTIFY : The fancy start screen for Vim and Neovim {
 Plugin 'mhinz/vim-startify'
     let g:startify_custom_indices = ['f', 'g', 'h']
