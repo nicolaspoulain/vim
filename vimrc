@@ -71,6 +71,8 @@ Plugin 'godlygeek/tabular'
 " VIM-TABLE-MODE : for easy table formatting {
 Plugin 'dhruvasagar/vim-table-mode'
 let g:table_mode_header_fillchar='='
+"<Leader>tm	  to toggle table mode
+"<Leader>T    to input delimiter and tabelize visual
 "}
 " VIM-SIGNATURE : place, toggle and display marks {
 Plugin 'kshenoy/vim-signature'
