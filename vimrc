@@ -285,7 +285,7 @@ autocmd BufEnter *.py :set omnifunc=python3complete#Complete
 autocmd BufEnter * silent! lcd %:p:h
 
 " color the 81st column of wide lines
-au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+au BufWinEnter * let w:m2=matchadd('MatchParen', '\%81v', 100)
 
 set number          " display line numbers
 set numberwidth=4   " nuw: width of number column
@@ -367,8 +367,9 @@ hi SpellBad ctermfg=015 ctermbg=000 cterm=none guifg=#FFFFFF guibg=#000000
 " Splits and Buffers{
 
 " Move between buffers
-nnoremap <C-Right> :bnext<CR>     " is <C-right_arrow>
-nnoremap <C-Left> :bprevious<CR> " is <C-left_arrow>
+nnoremap <Leader>n :bnext<CR>     " next buffer
+nnoremap <Leader>p :bprevious<CR> " prev buffer
+nnoremap <Leader>, :b#<CR>        " alt  buffer
 
 " move x buffer in a vsplitted window
 nnoremap <Leader>s :call VerticalSplitBuffer(input('Vsplit buffer No: '))<CR>
