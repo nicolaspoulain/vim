@@ -24,30 +24,17 @@ let mapleader=','      " change map leader from \ to ,
 let maplocalleader=',' " change map leader from \ to ,
 
 " VIM-MUCOMPLETE : Chained completion that works the way you want! {
-" Plugin 'lifepillar/vim-mucomplete'
-" set completeopt+=menuone
-" let g:mucomplete#chains = {}
-" let g:mucomplete#chains.default=['path', 'ulti', 'incl', 'omni', 'uspl']
-" let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
+Plugin 'lifepillar/vim-mucomplete'
+set completeopt+=menuone
+set completeopt+=noselect
+let g:mucomplete#enable_auto_at_startup = 1
+let g:mucomplete#chains = {}
+let g:mucomplete#chains.default = ['omni', 'ulti', 'path', 'keyn', 'file', 'incl']
+let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
 
-" " inoremap <expr> <c-e> mucomplete#popup_exit("\<c-e>")
-" " inoremap <expr> <c-y> mucomplete#popup_exit("\<c-y>")
-" " inoremap <expr>  <cr> mucomplete#popup_exit("\<cr>")
-
-" " https://github.com/lifepillar/vim-mucomplete/commit/8e1ddf51f47cd5351cb37a622c5eec1c9c6d2130
-" inoremap <silent> <plug>(MUcompleteFwdKey) <c-b>
-" imap <c-b> <plug>(MUcompleteCycFwd)
-
-" " vim 7 doesn't support noinsert and noselect options for completeopt
-" if v:version >= 800
-  " set shortmess+=c
-  " set completeopt+=noinsert
-  " set completeopt+=noselect
-  " let g:mucomplete#enable_auto_at_startup = 1
-" endif
 " }
 " YOUCOMPLETEME : a code-completion engine for Vim {
-Plugin 'valloric/youcompleteme'
+" Plugin 'valloric/youcompleteme'
 " }
 " ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
 Plugin 'SirVer/ultisnips'

@@ -34,12 +34,6 @@ C-X   -C-O                | omnicompletion
 C-X   -C-N                | file completion
 C-N                       | all buffers completion
 
-                          | |VIMWIKI|
-------------------------- | ---------------------------------------------
-<Leader>ww , <BS>         | go/back to the main page of the wiki
-<Leader>wi , <BS>         | go/back to the diary index
-VimwikiDiaryGenerateLinks | generate diary with available links
-
                           | SPELL
 ------------------------- | ---------------------------------------------
 zg, zw                    | add word under cursor as good / bad
@@ -59,7 +53,7 @@ map: <Leader>vs           | split long file into 2 continuous windows
 :e[dit] {file}  :Sex :Vex | open {file} in new, split, vsplit window
 :sb x , vsp | bx, (map:,W | x buffer in a (v)splited window
 :sball , :bw              | split all buffers , close current buffer
-:bn , :bp                 | next/prev buffer (maped to C-→> C-←)
+:bn , :bp                 | next/prev buffer (maped to C-→  C-←)
 
                           | VISUAL MODE ie TEXT BLOCKS
 ------------------------- | ---------------------------------------------
