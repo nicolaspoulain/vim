@@ -39,6 +39,7 @@ POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="\u256d\u2500 "
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="\u2570\uf460 "
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
+plugins=(zsh-autosuggestions)
 # Configuration de l'historique pour zsh-autosuggestions
 HISTSIZE=3000             # nb lignes en memoire
 HISTFILE=~/.zsh_history   # fichier de sauvegarde
@@ -47,7 +48,7 @@ HISTDUP=erase             # suppression des doublons
 setopt appendhistory      # ajout des entrees en mode append
 setopt sharehistory       # partge de l'historique entre terminaux
 setopt incappendhistory   # ajout imm√diat a l'historique
-setopt correct            # proposition de correction 
+setopt correct            # proposition de correction
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
