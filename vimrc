@@ -24,17 +24,17 @@ let mapleader=','      " change map leader from \ to ,
 let maplocalleader=',' " change map leader from \ to ,
 
 " VIM-MUCOMPLETE : Chained completion that works the way you want! {
-Plugin 'lifepillar/vim-mucomplete'
-set completeopt+=menuone
-set completeopt+=noselect
-let g:mucomplete#enable_auto_at_startup = 1
-let g:mucomplete#chains = {}
-let g:mucomplete#chains.default = ['omni', 'ulti', 'path', 'keyn', 'file', 'incl']
-let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
+" Plugin 'lifepillar/vim-mucomplete'
+" set completeopt+=menuone
+" set completeopt+=noselect
+" let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#chains = {}
+" let g:mucomplete#chains.default = ['omni', 'ulti', 'path', 'keyn', 'file', 'incl']
+" let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
 
-" }
+" " }
 " YOUCOMPLETEME : a code-completion engine for Vim {
-" Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 " }
 " ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
 Plugin 'SirVer/ultisnips'
