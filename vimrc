@@ -97,12 +97,13 @@ Plugin 'kien/ctrlp.vim'
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll|~)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+" set wildignore+=*~,*.pdf,*.log,*.aux,*.fls,*.nav,*.snm,*.out
+" let g:ctrlp_custom_ignore = {
+  " \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  " \ 'file': '\v(~|\.pdf|\.log|\.aux|\.fls|\.nav|\.snm|\.out)$',
+  " \ 'link': 'some_bad_symbolic_links',
+  " \ }
 "}
 " VIM-FUGITIVE : A Git wrapper so awesome, it should be illegal {
 Plugin 'tpope/vim-fugitive'
@@ -217,7 +218,7 @@ map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
 "}
 " NUMBERS : a plugin for intelligently toggling line numbers {
-Plugin 'myusuf3/numbers.vim'
+" Plugin 'myusuf3/numbers.vim'
 " }
 " VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
 Plugin 'lumiliet/vim-twig'
@@ -255,6 +256,12 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 " }
+
+
+autocmd BufRead,BufNewFile *.tex set wildignore+=*~,*.pdf,*.log,*.aux,*.fls,*.nav,*.snm,*.out,*.idx,*.ing,*.ind,*.ilg
+autocmd BufRead,BufNewFile *.tex let g:ctrlp_custom_ignore = {
+  \ 'file': '\v(~|\.pdf|\.log|\.aux|\.fls|\.nav|\.snm|\.out|\.idx|\.ing|\.ind|\.ilg)$',
+  \ }
 
 " General settings {
 autocmd BufNewFile *.py :set omnifunc=python3complete#Complete
@@ -322,6 +329,9 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.profile set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
     autocmd BufRead,BufNewFile *.md   set filetype=markdown
+    autocmd BufRead,BufNewFile *.md   set spell! spelllang=fr
+    autocmd BufRead,BufNewFile *.tex   set spell! spelllang=fr
+    autocmd BufRead,BufNewFile *.tex  let g:ctrlp_custom_ignore = '\v[\/]\.(pdf|log|aux)$'
     autocmd BufRead,BufNewFile *.md   set spell! spelllang=fr
   augroup END
 endif
