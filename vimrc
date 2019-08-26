@@ -23,16 +23,6 @@ call vundle#begin()
 let mapleader=','      " change map leader from \ to ,
 let maplocalleader=',' " change map leader from \ to ,
 
-" VIM-MUCOMPLETE : Chained completion that works the way you want! {
-" Plugin 'lifepillar/vim-mucomplete'
-" set completeopt+=menuone
-" set completeopt+=noselect
-" let g:mucomplete#enable_auto_at_startup = 1
-" let g:mucomplete#chains = {}
-" let g:mucomplete#chains.default = ['omni', 'ulti', 'path', 'keyn', 'file', 'incl']
-" let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
-
-" " }
 " YOUCOMPLETEME : a code-completion engine for Vim {
 Plugin 'valloric/youcompleteme'
 " }
@@ -146,30 +136,11 @@ endfunction
 
 autocmd User AirlineAfterInit call AirlineInit()
 " }
-"MARKDOWN : Syntax highlighting, matching rules and mappings {
-if v:version > 703
-  " Plugin 'vim-pandoc/vim-pandoc'
-  " Plugin 'vim-pandoc/vim-pandoc-syntax'
-  Plugin 'plasticboy/vim-markdown'
-  " set conceallevel=2
-" Plugin 'prurigro/vim-markdown-concealed'
-endif
-"}
-" VIMTEX : A modern vim plugin for editing LaTeX files {
-Plugin 'lervag/vimtex'
-let g:vimtex_compiler_latexmk = {'callback' : 0}
-"}
-" TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
-Plugin 'christoomey/vim-tmux-navigator'
-"}
 " NERDTREE : A tree explorer plugin for vim {
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
 " nnoremap <Leader>n  :NERDTreeToggle<CR>
 map <Leader>e <plug>NERDTreeTabsToggle<CR>
-"}
-" BUFKILL : unload, delete or wipe a buffer without closing the window or split {
-Plugin 'qpkorr/vim-bufkill'
 "}
 " EASYTAGS : Automated tag file generation and syntax highlighting of tags {
 Plugin 'xolox/vim-misc'
@@ -179,7 +150,87 @@ set tags=tags;/
 " TAGBAR : Vim plugin that displays tags in a window, ordered by scope {
 Plugin 'majutsushi/tagbar'
 nmap <Leader>t :TagbarToggle<CR>
-autocmd FileType markdown nmap <Leader>t :Toc<CR>
+" Tagbar et markdown : voir section «Spécial Markdown»
+"}
+" EASYMOTION : vim motion on speed {
+Plugin 'easymotion/vim-easymotion'
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" Move to line
+map  <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+"}
+" VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
+Plugin 'lumiliet/vim-twig'
+"}
+" VIM-PASTE-EASY : Automatically set paste for you {
+Plugin 'roxma/vim-paste-easy'
+"}
+" PAPERCOLOR-THEME {
+" Plugin 'NLKNguyen/papercolor-theme' " colorscheme PaperColor
+" colorscheme PaperColor
+colorscheme elflord
+" Plugin 'pbrisbin/vim-colors-off'    " colorscheme off
+" Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
+" Plugin 'tomasr/molokai'             " colorscheme molokai
+set t_Co=256        " Colors in the terminal
+set background=dark
+"}
+
+" Obsolete {
+" STARTIFY : The fancy start screen for Vim and Neovim {
+" Plugin 'mhinz/vim-startify'
+    " let g:startify_custom_indices = ['f', 'g', 'h']
+    " let g:startify_bookmarks = [
+            " \ { 'p': '~/Dropbox/Applications/Plain.txt/' },
+            " \ { 's': '~/.vim/vimrc' },
+            " \ { 'v': '~/.vim/VimMyTips.md' },
+            " \ ]
+    " let g:startify_list_order = [
+            " \ ['   MRU'], 'files',
+            " \ ['   Bookmarks'], 'bookmarks'
+            " \]
+"}
+" VIM-MUCOMPLETE : Chained completion that works the way you want! {
+" Plugin 'lifepillar/vim-mucomplete'
+" set completeopt+=menuone
+" set completeopt+=noselect
+" let g:mucomplete#enable_auto_at_startup = 1
+" let g:mucomplete#chains = {}
+" let g:mucomplete#chains.default = ['omni', 'ulti', 'path', 'keyn', 'file', 'incl']
+" let g:mucomplete#chains.markdown = ['path', 'ulti', 'incl', 'omni']
+
+" }
+" TMUX-NAVIGATOR : Seamless navigation between tmux panes and vim splits {
+" Plugin 'christoomey/vim-tmux-navigator'
+"}
+" BUFKILL : unload, delete or wipe a buffer without closing the window or split {
+" Plugin 'qpkorr/vim-bufkill'
+"}
+" NUMBERS : a plugin for intelligently toggling line numbers {
+" Plugin 'myusuf3/numbers.vim'
+" }
+"}
+
+" Spécial Markdown {
+" MARKDOWN : Syntax highlighting, matching rules and mappings
+if v:version > 703
+  " Plugin 'vim-pandoc/vim-pandoc'
+  " Plugin 'vim-pandoc/vim-pandoc-syntax'
+  Plugin 'plasticboy/vim-markdown'
+  set conceallevel=2
+" Plugin 'prurigro/vim-markdown-concealed'
+endif
 " Add support for markdown files in tagbar.
 let g:tagbar_type_markdown = {
     \ 'ctagstype': 'markdown',
@@ -195,59 +246,21 @@ let g:tagbar_type_markdown = {
     \ },
     \ 'sort': 0,
 \ }
+autocmd FileType markdown nmap <Leader>t :Toc<CR>
 "}
-" EASYMOTION : vim motion on speed {
-Plugin 'easymotion/vim-easymotion'
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
+" Spécial LaTeX {
+" VIMTEX : A modern vim plugin for editing LaTeX files
+Plugin 'lervag/vimtex'
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+let g:tex_flavor='latex' " Prevent vim from setting filetype to `plaintex`
 
-" s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
-
-" Move to line
-map  <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-"}
-" NUMBERS : a plugin for intelligently toggling line numbers {
-" Plugin 'myusuf3/numbers.vim'
+autocmd BufRead,BufNewFile *.tex   set spell spelllang=fr
+autocmd BufRead,BufNewFile *.tex set wildignore+=*~,*.pdf,*.log,*.aux,*.fls,*.nav,*.snm,*.out,*.idx,*.ing,*.ind,*.ilg
+autocmd BufRead,BufNewFile *.tex let g:ctrlp_custom_ignore = {
+  \ 'file': '\v(~|\.pdf|\.log|\.aux|\.fls|\.nav|\.snm|\.out|\.idx|\.ing|\.ind|\.ilg)$',
+  \ }
 " }
-" VIM-TWIG : Twig syntax highlighting, snipMate, auto-indent, etc. {
-Plugin 'lumiliet/vim-twig'
-"}
-" VIM-PASTE-EASY : Automatically set paste for you {
-Plugin 'roxma/vim-paste-easy'
-"}
-" PAPERCOLOR-THEME {
-Plugin 'NLKNguyen/papercolor-theme' " colorscheme PaperColor
-Plugin 'pbrisbin/vim-colors-off'    " colorscheme off
-Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
-Plugin 'tomasr/molokai'             " colorscheme molokai
-colorscheme elflord
-set t_Co=256        " Colors in the terminal
-set background=dark
-"}
-" STARTIFY : The fancy start screen for Vim and Neovim {
-Plugin 'mhinz/vim-startify'
-    let g:startify_custom_indices = ['f', 'g', 'h']
-    let g:startify_bookmarks = [
-            \ { 'p': '~/Dropbox/Applications/Plain.txt/' },
-            \ { 's': '~/.vim/vimrc' },
-            \ { 'v': '~/.vim/VimMyTips.md' },
-            \ ]
-    let g:startify_list_order = [
-            \ ['   MRU'], 'files',
-            \ ['   Bookmarks'], 'bookmarks'
-            \]
-"}
 
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
@@ -257,11 +270,6 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }
 
-
-autocmd BufRead,BufNewFile *.tex set wildignore+=*~,*.pdf,*.log,*.aux,*.fls,*.nav,*.snm,*.out,*.idx,*.ing,*.ind,*.ilg
-autocmd BufRead,BufNewFile *.tex let g:ctrlp_custom_ignore = {
-  \ 'file': '\v(~|\.pdf|\.log|\.aux|\.fls|\.nav|\.snm|\.out|\.idx|\.ing|\.ind|\.ilg)$',
-  \ }
 
 " General settings {
 autocmd BufNewFile *.py :set omnifunc=python3complete#Complete
@@ -311,7 +319,6 @@ set pastetoggle=<F12> " pastetoggle (sane indentation on pastes)
 filetype on              " enable file type detection
 filetype plugin on       " load the plugin files for specific file types
 filetype indent on       " load the indent file for specific file types
-let g:tex_flavor='latex' " Prevent vim from setting filetype to `plaintex`
 syntax enable            " active la coloration syntaxique
 
 " comments in italic
@@ -329,10 +336,8 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.profile set filetype=php
     autocmd BufRead,BufNewFile *.test set filetype=php
     autocmd BufRead,BufNewFile *.md   set filetype=markdown
-    autocmd BufRead,BufNewFile *.md   set spell! spelllang=fr
-    autocmd BufRead,BufNewFile *.tex   set spell! spelllang=fr
-    autocmd BufRead,BufNewFile *.tex  let g:ctrlp_custom_ignore = '\v[\/]\.(pdf|log|aux)$'
-    autocmd BufRead,BufNewFile *.md   set spell! spelllang=fr
+    autocmd BufRead,BufNewFile *.md   set spell spelllang=fr
+    autocmd BufRead,BufNewFile *.md   set spell spelllang=fr
   augroup END
 endif
 
@@ -446,8 +451,6 @@ endfunction
 "Wildmenu settings {
 set wildmenu            " Turn on the Wild menu for completion on opening files
 set wildignore+=*.~     "wig: ignore compiled objects and backups
-set wig+=*.o,*.obj,*.pyc
-set wig+=.sass-cache,tmp
 " <Tab> completion, list matches, then longest common part, then all.
 set wildmode=list:longest,full
 "}
