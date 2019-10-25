@@ -45,6 +45,9 @@ let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 " --- BEFORE plasticboy
 Plugin 'godlygeek/tabular'
 "}
+" TODO
+Plugin 'freitass/todo.txt-vim'
+"}
 " VIM-TABLE-MODE : for easy table formatting {
 Plugin 'dhruvasagar/vim-table-mode'
 let g:table_mode_header_fillchar='='
@@ -178,10 +181,8 @@ Plugin 'roxma/vim-paste-easy'
 "}
 " PAPERCOLOR-THEME {
 " Plugin 'NLKNguyen/papercolor-theme' " colorscheme PaperColor
-" colorscheme PaperColor
-colorscheme elflord
 " Plugin 'pbrisbin/vim-colors-off'    " colorscheme off
-" Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
+Plugin 'vim-scripts/xoria256.vim'   " colorscheme xoria256
 " Plugin 'tomasr/molokai'             " colorscheme molokai
 set t_Co=256        " Colors in the terminal
 set background=dark
@@ -270,6 +271,7 @@ filetype plugin indent on    " required
 " Put your non-Plugin stuff after this line
 " }
 
+colorscheme xoria256
 
 " General settings {
 autocmd BufNewFile *.py :set omnifunc=python3complete#Complete

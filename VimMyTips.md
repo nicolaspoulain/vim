@@ -109,7 +109,7 @@ C-V    233                | insert é (ins mode) see :dig for utf8 chars
 C-A     , C-X             | add, Substract N to the number after cursor
 C-R    =5*5               | insert 25 into text
 :set paste :set nopaste   | toggle paste mode (maped to <F12>)
-:m :qsort [n]                 | sort column 1 [numeric]
+:m :qsort [n]             | sort column 1 [numeric]
 :%!sort -t';' -k3 [-n]    | sort column 3 of coma separated [numeric]
 :[range]hardcopy > out.ps | send [range] lines (def. all) to printer
 :w!!                      | write RO files :w !sudo tee > /dev/null %

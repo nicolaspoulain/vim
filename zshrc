@@ -20,7 +20,8 @@
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="fishy"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Config du prompt
 POWERLEVEL9K_TIME_FORMAT="%D{\uf073 %d/%m/%y \ue383 %H:%M}"
@@ -111,6 +112,18 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+# Use lf to switch directories and bind it to ctrl-o
+lfcd () {
+    tmp="$(mktemp)"
+    lf -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        [ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
+    fi
+}
+bindkey -s '^o' 'ranger\n'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
