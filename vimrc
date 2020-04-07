@@ -25,6 +25,10 @@ let maplocalleader=',' " change map leader from \ to ,
 
 " YOUCOMPLETEME : a code-completion engine for Vim {
 Plugin 'valloric/youcompleteme'
+let g:ycm_filetype_blacklist = {}
+" The default value is:
+" g:ycm_filetype_blacklist={'notes': 1, 'markdown': 1, 'unite': 1, 'tagbar': 1, 'pandoc': 1, 'qf': 1, 'vimwiki': 1, 'text': 1, 'infolog': 1, 'mail': 1}
+
 " }
 " ULTISNIPS/VIM-SNIPPETS - The ultimate snippet solution for Vim {
 Plugin 'SirVer/ultisnips'
@@ -37,16 +41,25 @@ elseif has('python3')
 endif
 
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "my-snippets"]
-let g:UltiSnipsExpandTrigger="<C-J>"
-let g:UltiSnipsJumpForwardTrigger="<C-J>"
-let g:UltiSnipsJumpBackwardTrigger="<C-K>"
 " }
+" SUPERTAB : with YouCompleteMe and UltiSnips compatibility {
+Plugin 'ervandew/supertab'
+" let g:SuperTabCrMapping                = 0
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+" }
+
 " TABULAR : Configurable, flexible, intuitive text aligning {
 " --- BEFORE plasticboy
 Plugin 'godlygeek/tabular'
-"}
-" TODO
-Plugin 'freitass/todo.txt-vim'
 "}
 " VIM-TABLE-MODE : for easy table formatting {
 Plugin 'dhruvasagar/vim-table-mode'
@@ -189,6 +202,9 @@ set background=dark
 "}
 
 " Obsolete {
+" TODO {
+" Plugin 'freitass/todo.txt-vim'
+"}
 " STARTIFY : The fancy start screen for Vim and Neovim {
 " Plugin 'mhinz/vim-startify'
     " let g:startify_custom_indices = ['f', 'g', 'h']
@@ -223,46 +239,6 @@ set background=dark
 " }
 "}
 
-" Spécial Markdown {
-" MARKDOWN : Syntax highlighting, matching rules and mappings
-if v:version > 703
-  " Plugin 'vim-pandoc/vim-pandoc'
-  " Plugin 'vim-pandoc/vim-pandoc-syntax'
-  Plugin 'plasticboy/vim-markdown'
-  set conceallevel=2
-" Plugin 'prurigro/vim-markdown-concealed'
-endif
-" Add support for markdown files in tagbar.
-let g:tagbar_type_markdown = {
-    \ 'ctagstype': 'markdown',
-    \ 'ctagsbin' : '/opt/markdown2ctags/markdown2ctags.py',
-    \ 'ctagsargs' : '-f - --sort=yes',
-    \ 'kinds' : [
-        \ 's:sections',
-        \ 'i:images'
-    \ ],
-    \ 'sro' : '|',
-    \ 'kind2scope' : {
-        \ 's' : 'section',
-    \ },
-    \ 'sort': 0,
-\ }
-autocmd FileType markdown nmap <Leader>t :Toc<CR>
-"}
-" Spécial LaTeX {
-" VIMTEX : A modern vim plugin for editing LaTeX files
-Plugin 'lervag/vimtex'
-let g:vimtex_compiler_latexmk = {'callback' : 0}
-
-let g:tex_flavor='latex' " Prevent vim from setting filetype to `plaintex`
-
-autocmd BufRead,BufNewFile *.tex   set spell spelllang=fr
-autocmd BufRead,BufNewFile *.tex set wildignore+=*~,*.pdf,*.log,*.aux,*.fls,*.nav,*.snm,*.out,*.idx,*.ing,*.ind,*.ilg
-autocmd BufRead,BufNewFile *.tex let g:ctrlp_custom_ignore = {
-  \ 'file': '\v(~|\.pdf|\.log|\.aux|\.fls|\.nav|\.snm|\.out|\.idx|\.ing|\.ind|\.ilg)$',
-  \ }
-" }
-
 " Plugin Vundle setup END {
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -274,9 +250,6 @@ filetype plugin indent on    " required
 colorscheme xoria256
 
 " General settings {
-autocmd BufNewFile *.py :set omnifunc=python3complete#Complete
-autocmd BufEnter *.py :set omnifunc=python3complete#Complete
-
 " Automatically change the current directory
 autocmd BufEnter * silent! lcd %:p:h
 
@@ -342,6 +315,52 @@ if has("autocmd")
     autocmd BufRead,BufNewFile *.md   set spell spelllang=fr
   augroup END
 endif
+
+" Spécial Markdown {
+" MARKDOWN : Syntax highlighting, matching rules and mappings
+if v:version > 703
+  " Plugin 'vim-pandoc/vim-pandoc'
+  " Plugin 'vim-pandoc/vim-pandoc-syntax'
+  Plugin 'plasticboy/vim-markdown'
+  set conceallevel=2
+" Plugin 'prurigro/vim-markdown-concealed'
+endif
+" Add support for markdown files in tagbar.
+let g:tagbar_type_markdown = {
+    \ 'ctagstype': 'markdown',
+    \ 'ctagsbin' : '/opt/markdown2ctags/markdown2ctags.py',
+    \ 'ctagsargs' : '-f - --sort=yes',
+    \ 'kinds' : [
+        \ 's:sections',
+        \ 'i:images'
+    \ ],
+    \ 'sro' : '|',
+    \ 'kind2scope' : {
+        \ 's' : 'section',
+    \ },
+    \ 'sort': 0,
+\ }
+autocmd FileType markdown nmap <Leader>t :Toc<CR>
+    autocmd BufRead,BufNewFile *.md   set textwidth=80
+    autocmd BufRead,BufNewFile *.md   set formatoptions+=t
+"}
+" Spécial LaTeX {
+" VIMTEX : A modern vim plugin for editing LaTeX files
+Plugin 'lervag/vimtex'
+let g:vimtex_compiler_latexmk = {'callback' : 0}
+
+let g:tex_flavor='latex' " Prevent vim from setting filetype to `plaintex`
+
+autocmd BufRead,BufNewFile *.tex   set spell spelllang=fr
+autocmd BufRead,BufNewFile *.tex set wildignore+=*~,*.pdf,*.log,*.aux,*.fls,*.nav,*.snm,*.out,*.idx,*.ing,*.ind,*.ilg
+autocmd BufRead,BufNewFile *.tex let g:ctrlp_custom_ignore = {
+  \ 'file': '\v(~|\.pdf|\.log|\.aux|\.fls|\.nav|\.snm|\.out|\.idx|\.ing|\.ind|\.ilg)$',
+  \ }
+" }
+" Spécial Python {
+autocmd BufNewFile *.py :set omnifunc=python3complete#Complete
+autocmd BufEnter *.py :set omnifunc=python3complete#Complete
+" }
 
 
 hi SpellBad ctermfg=015 ctermbg=000 cterm=none guifg=#FFFFFF guibg=#000000
