@@ -40,6 +40,8 @@ elseif has('python3')
   let g:UltiSnipsUsePythonVersion = 3
 endif
 
+" Le dossier par défaut est vim ~/.vim/bundle/vim-snippets/snippets/
+" On ajoute ~/.vim/bundle/vim-snippets/UltiSnips et ~/.vim/my-snippets
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "my-snippets"]
 " }
 " SUPERTAB : with YouCompleteMe and UltiSnips compatibility {
