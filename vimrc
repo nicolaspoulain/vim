@@ -21,7 +21,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 " }
 let mapleader=','      " change map leader from \ to ,
-let maplocalleader=',' " change map leader from \ to ,
+let maplocalleader=';' " change map leader from \ to ,
 
 " YOUCOMPLETEME : a code-completion engine for Vim {
 Plugin 'valloric/youcompleteme'
@@ -58,6 +58,10 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 " }
+
+" JOPLINVIM : This is a plugin for us to use joplin.app in vim.
+" Plugin 'tenfyzhong/joplin.vim'
+" let g:joplin_token = "589f08f32157d45cb4867503134d92b3844f49d7a80e8a1917595f684499b1c09a64885428c397b30706ec2ddb744faa6c03396fb9ff969893b36e1fae32d397"
 
 " TABULAR : Configurable, flexible, intuitive text aligning {
 " --- BEFORE plasticboy
@@ -203,9 +207,10 @@ set t_Co=256        " Colors in the terminal
 set background=dark
 "}
 
+Plugin 'neoclide/coc.nvim'
 " Obsolete {
 " TODO {
-" Plugin 'freitass/todo.txt-vim'
+Plugin 'freitass/todo.txt-vim'
 "}
 " STARTIFY : The fancy start screen for Vim and Neovim {
 " Plugin 'mhinz/vim-startify'
@@ -319,11 +324,30 @@ if has("autocmd")
 endif
 
 " Spécial Markdown {
+Plugin 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
+filetype plugin on
+  "Uncomment to override defaults:
+  "let g:instant_markdown_slow = 1
+  let g:instant_markdown_autostart = 0
+nnoremap <localleader>e :! evince %:p:r.pdf &<CR>
+nnoremap <localleader>v :InstantMarkdownPreview " run instant_markdown
+nnoremap <localleader>p :w <bar> :!/home/nico/Dropbox/Applications/neutriNote/notes/compile.sh -p -- %<CR>     " compile pdf from md
+  "let g:instant_markdown_open_to_the_world = 1
+  "let g:instant_markdown_allow_unsafe_content = 1
+  "let g:instant_markdown_allow_external_content = 0
+  "let g:instant_markdown_mathjax = 1
+  "let g:instant_markdown_mermaid = 1
+  "let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+  "let g:instant_markdown_autoscroll = 0
+  "let g:instant_markdown_port = 8888
+  "let g:instant_markdown_python = 1
+
+
 " MARKDOWN : Syntax highlighting, matching rules and mappings
 if v:version > 703
-  " Plugin 'vim-pandoc/vim-pandoc'
-  " Plugin 'vim-pandoc/vim-pandoc-syntax'
-  Plugin 'plasticboy/vim-markdown'
+  Plugin 'vim-pandoc/vim-pandoc'
+  Plugin 'vim-pandoc/vim-pandoc-syntax'
+  " Plugin 'plasticboy/vim-markdown'
   set conceallevel=2
 " Plugin 'prurigro/vim-markdown-concealed'
 endif
@@ -509,6 +533,8 @@ if get(g:, 'elite_mode')
 	nnoremap <Right> :vertical resize -2<CR>
 endif
 
+
+" noremap <C-m> :make<BAR>copen<CR>
 
 
 " https://gist.github.com/tpope/287147

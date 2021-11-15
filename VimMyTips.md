@@ -73,6 +73,7 @@ gg=G                      | eventually: set filetype=js + set smartindent
 Vu , VU , V~              | lowercase, uppercase, toggle entire line
 gggug                     | lowercase entire file
 gq{motion}                | format the lines that {motion} moves over
+gqap                      | format paragraph
 [range]J , gJ             | Join [range] lines (insert/remove space)
 ,W                        | toggle Wrap lines
 
@@ -128,6 +129,9 @@ g<C-G> , :%s/{ptnr}//gn   | count words, occurences of {ptrn}
 <Leader>tm                | |TABLE_MODE| toggle table mode : | and ||
 <Leader>tt                |            tabulize visually selected content
 <Leader>f,L,w   ,   s     | |EASYMTION| move to {chr},line,wrd, {chr}{chr}
+<C-p>                     | |FZF| search
+<C-v>, <C-x>              |     open search in vsplit, hsplit
+
 
                           | TEXT-OBJECT and *SURROUND*
 --------------------------| ---------------------------------------------
