@@ -19,23 +19,24 @@ call plug#begin('~/.config/nvim/plugged')
 " STARTIFY {
 Plug 'mhinz/vim-startify'
 "}
-" VIM-FUGITIVE : A Git wrapper so awesome, it should be illegal
+" VIM-FUGITIVE : A Git wrapper so awesome, it should be illegal {
 Plug 'tpope/vim-fugitive'
 nnoremap <Leader>gg :Git<CR>
 nnoremap <Leader>gp :Gpush<CR>
-
+"}
 " NERDTREE : A tree explorer plugin for vim {
 Plug 'scrooloose/nerdtree'
 nnoremap <Leader>e  :NERDTreeToggle<Cr>
 nnoremap <C-e>  :NERDTreeToggle<Cr>
 "}
-" FZF fuzzy find
+" FZF fuzzy find {
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+nnoremap <C-g> :GFiles<Cr>
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-b> :Buffers<Cr>
 nnoremap <leader>ff :Ag<Cr>
-
+"}
 " TABULAR : Configurable, flexible, intuitive text aligning {
 " --- BEFORE plasticboy
 Plug 'godlygeek/tabular'
@@ -59,6 +60,11 @@ Plug 'kshenoy/vim-signature'
 "}
 " NERDCOMMENTER {
 Plug 'preservim/nerdcommenter'
+"}
+" TAGBAR : tags of file and structure overview {
+Plug 'preservim/tagbar'
+nmap <F8> :TagbarToggle<CR>
+nmap <leader>t :TagbarToggle<CR>
 "}
 " VIM-AIRLINE : Lean and mean status/tabline that's light as air {
 Plug 'bling/vim-airline'
@@ -361,10 +367,10 @@ map k gk
 
 "}
 " Tabulations and shift {
-set tabstop=4               " number of columns occupied by a tab
-set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
+set tabstop=2               " number of columns occupied by a tab
+set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
-set shiftwidth=4            " width for autoindents
+set shiftwidth=2            " width for autoindents
 set smarttab          " helps with backspacing because of expandtab
 set backspace=2       " make backspace work like most other apps
 set smartindent       " indent is automatically and smartly inserted
@@ -527,7 +533,9 @@ set updatetime=300
 set noswapfile    " don't litter swap files everywhere
 
 " Change working directory to the directory of the open buffer.
-nnoremap <Leader>cd :cd %:p:h<cr>:pwd<cr>
+"nnoremap <Leader>cd :cd %:p:h<cr>:pwd<cr>
+" Change to git root directory
+nnoremap <leader>cd :exe 'cd '.system('git rev-parse --show-cdup')<CR>
 
 " undo
 if has('persistent_undo')
@@ -573,3 +581,11 @@ endif
 " endif
 " endfunction
 "}
+
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%'),
+  \   <bang>0)
+
