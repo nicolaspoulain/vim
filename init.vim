@@ -32,10 +32,13 @@ nnoremap <C-e>  :NERDTreeToggle<Cr>
 " FZF fuzzy find {
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" serach by filename in .git directory
 nnoremap <C-g> :GFiles<Cr>
+" search files containig pattern or 'exact_string
+nnoremap <C-f> :Ag<Cr>
+nnoremap <leader>ff :Ag<Cr>
 nnoremap <C-p> :Files<Cr>
 nnoremap <C-b> :Buffers<Cr>
-nnoremap <leader>ff :Ag<Cr>
 "}
 " TABULAR : Configurable, flexible, intuitive text aligning {
 " --- BEFORE plasticboy
